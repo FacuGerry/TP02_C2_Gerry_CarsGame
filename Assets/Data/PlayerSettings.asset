@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4cf7908cf4cd094c8e9fbacb123b351, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettingsSO
-  horsePower: 0
-  brakePower: 0
-  steeringPower: 0
+  horsePower: 500
+  brakePower: 250
+  steeringPower: 320

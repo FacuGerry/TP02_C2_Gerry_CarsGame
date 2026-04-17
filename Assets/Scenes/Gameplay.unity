@@ -185,6 +185,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
   m_PrefabInstance: {fileID: 219614988}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &219614990 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7566337247957239451, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
+  m_PrefabInstance: {fileID: 219614988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &219614991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8046801359368602294, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
+  m_PrefabInstance: {fileID: 219614988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &219614992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4064761402500483442, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
+  m_PrefabInstance: {fileID: 219614988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &219614993 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8715589035516911823, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
+  m_PrefabInstance: {fileID: 219614988}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824873532}
   - component: {fileID: 824873533}
+  - component: {fileID: 824873534}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -646,6 +667,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &824873534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824873531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2793dc5ac02f90841b6a0e53afa0f3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarMovement
+  _wheelFR: {fileID: 770996941}
+  _wheelFL: {fileID: 770996942}
+  _wheelRR: {fileID: 770996945}
+  _wheelRL: {fileID: 770996943}
+  _wheelVisualFR: {fileID: 219614993}
+  _wheelVisualFL: {fileID: 219614992}
+  _wheelVisualRR: {fileID: 219614991}
+  _wheelVisualRL: {fileID: 219614990}
+  _data: {fileID: 11400000, guid: 214417465cb17664fb1cd5dbf2813956, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

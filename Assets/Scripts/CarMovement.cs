@@ -24,7 +24,7 @@ public class CarMovement : MonoBehaviour
     private void Update()
     {
         _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;
-        _brakeForce = Input.GetAxis("Jump") * _data.brakePower;
+        _brakeForce = Input.GetAxis("Brake") * _data.brakePower;
         _steeringForce = Input.GetAxis("Horizontal") * _data.steeringPower;
     }
 
@@ -35,9 +35,9 @@ public class CarMovement : MonoBehaviour
         _wheelRR.motorTorque = _accelerationForce;
         _wheelRL.motorTorque = _accelerationForce;
 
-        _wheelFR.motorTorque = _brakeForce;
-        _wheelFL.motorTorque = _brakeForce;
-        _wheelRR.motorTorque = _brakeForce;
-        _wheelRL.motorTorque = _brakeForce;
+        _wheelFR.brakeTorque = _brakeForce;
+        _wheelFL.brakeTorque = _brakeForce;
+        _wheelRR.brakeTorque = _brakeForce;
+        _wheelRL.brakeTorque = _brakeForce;
     }
 }
