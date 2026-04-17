@@ -39,5 +39,8 @@ public class CarMovement : MonoBehaviour
         _wheelFL.brakeTorque = _brakeForce;
         _wheelRR.brakeTorque = _brakeForce;
         _wheelRL.brakeTorque = _brakeForce;
+
+        _wheelFR.steerAngle = _steeringForce;
+        _wheelFL.steerAngle = _steeringForce;
     }
 }
