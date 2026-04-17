@@ -15,7 +15,7 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private Transform _wheelVisualRL;
 
     [Header("Settings")]
-    [SerializeField] private PlayerSettingsSO _data;
+    [SerializeField] private CarSettingsSO _data;
 
     private float _accelerationForce;
     private float _brakeForce;
@@ -25,6 +25,11 @@ public class CarMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        _rb.mass = _data.weight;
     }
 
     private void Update()

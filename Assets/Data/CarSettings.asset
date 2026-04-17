@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4cf7908cf4cd094c8e9fbacb123b351, type: 3}
-  m_Name: PlayerSettings
+  m_Name: CarSettings
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettingsSO
   horsePower: 500
   brakePower: 250
-  steeringPower: 320
+  steeringPower: 5
+  restartCar: 114
