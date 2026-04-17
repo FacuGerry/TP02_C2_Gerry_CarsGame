@@ -20,12 +20,21 @@ public class CarMovement : MonoBehaviour
     private float _accelerationForce;
     private float _brakeForce;
     private float _steeringForce;
+    private Rigidbody _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
         _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;
         _brakeForce = Input.GetAxis("Brake") * _data.brakePower;
         _steeringForce = Input.GetAxis("Horizontal") * _data.steeringPower;
+
+        if (Input.GetKeyDown(_data.restartCar))
+            RestartCar();
     }
 
     private void FixedUpdate()
@@ -47,6 +56,17 @@ public class CarMovement : MonoBehaviour
         SyncVisuals(_wheelFL, _wheelVisualFL);
         SyncVisuals(_wheelRR, _wheelVisualRR);
         SyncVisuals(_wheelRL, _wheelVisualRL);
+    }
+
+    private void RestartCar()
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        _rb.linearVelocity = Vector3.zero;
+
+        _wheelFR.steerAngle = 0;
+        _wheelFL.steerAngle = 0;
     }
 
     private void SyncVisuals(WheelCollider coll, Transform visual)

@@ -7,4 +7,5 @@ public class PlayerSettingsSO : ScriptableObject
     public float horsePower;
     public float brakePower;
     public float steeringPower;
+    public KeyCode restartCar;
 }
