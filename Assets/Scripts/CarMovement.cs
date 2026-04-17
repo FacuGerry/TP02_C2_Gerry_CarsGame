@@ -42,5 +42,17 @@ public class CarMovement : MonoBehaviour
 
         _wheelFR.steerAngle = _steeringForce;
         _wheelFL.steerAngle = _steeringForce;
+
+        SyncVisuals(_wheelFR, _wheelVisualFR);
+        SyncVisuals(_wheelFL, _wheelVisualFL);
+        SyncVisuals(_wheelRR, _wheelVisualRR);
+        SyncVisuals(_wheelRL, _wheelVisualRL);
+    }
+
+    private void SyncVisuals(WheelCollider coll, Transform visual)
+    {
+        coll.GetWorldPose(out Vector3 pos, out Quaternion rot);
+        visual.position = pos;
+        visual.rotation = rot;
     }
 }
