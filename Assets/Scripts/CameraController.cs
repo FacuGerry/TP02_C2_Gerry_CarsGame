@@ -5,38 +5,45 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CarSettingsSO _data;
     [SerializeField] private Transform _firstPerson;
     [SerializeField] private Transform _thirdPerson;
+    [SerializeField] private float _angleFirstPerson = 0f;
+    [SerializeField] private float _angleThirdPerson = 15f;
     [SerializeField] private Transform _car;
 
     private float _yaw;
+    private float _pitch;
 
     private bool _isFirstPerson = false;
 
     private void Start()
     {
-        FollowCar(_isFirstPerson);
+        SetRotation();
+        FollowCar();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(_data.changePOV))
+        {
             _isFirstPerson = !_isFirstPerson;
+            SetRotation();
+        }
 
-        FollowCar(_isFirstPerson);
+        FollowCar();
+        LookAround();
     }
 
-    private void FollowCar(bool isFirstPerson)
+    private void SetRotation()
     {
-        if (isFirstPerson)
-        {
+        _pitch = _isFirstPerson ? _angleFirstPerson : _angleThirdPerson;
+    }
+
+    private void FollowCar()
+    {
+        if (_isFirstPerson)
             transform.position = _firstPerson.position;
-            transform.rotation = _firstPerson.localRotation;
-        }
         else
-        {
             transform.position = _thirdPerson.position;
-            LookAround();
-        }
     }
 
     private void LookAround()
@@ -45,8 +52,6 @@ public class CameraController : MonoBehaviour
 
         _yaw += mouseX;
 
-        Quaternion rotation = Quaternion.AngleAxis(_yaw, Vector3.up) * Quaternion.LookRotation(_thirdPerson.forward, Vector3.up);
-
-        transform.rotation = rotation;
+        transform.rotation = Quaternion.Euler(_pitch, _car.eulerAngles.y + _yaw, 0f);
     }
 }
