@@ -7,11 +7,14 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform _thirdPerson;
     [SerializeField] private Transform _car;
 
+    private float _yaw;
+
     private bool _isFirstPerson = false;
 
     private void Start()
     {
         FollowCar(_isFirstPerson);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -32,7 +35,18 @@ public class CameraController : MonoBehaviour
         else
         {
             transform.position = _thirdPerson.position;
-            transform.LookAt(_car);
+            LookAround();
         }
+    }
+
+    private void LookAround()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+
+        _yaw += mouseX;
+
+        Quaternion rotation = Quaternion.AngleAxis(_yaw, Vector3.up) * Quaternion.LookRotation(_thirdPerson.forward, Vector3.up);
+
+        transform.rotation = rotation;
     }
 }

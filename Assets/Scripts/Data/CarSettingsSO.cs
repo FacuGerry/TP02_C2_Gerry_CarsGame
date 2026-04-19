@@ -11,5 +11,8 @@ public class CarSettingsSO : ScriptableObject
     public float brakePower;
     public float steeringPower;
     public KeyCode restartCar;
+
+    [Header("Camera controls")]
+    public float cameraSensitivity;
     public KeyCode changePOV;
 }
