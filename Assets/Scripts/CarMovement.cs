@@ -44,23 +44,36 @@ public class CarMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _wheelFR.motorTorque = _accelerationForce;
-        _wheelFL.motorTorque = _accelerationForce;
-        _wheelRR.motorTorque = _accelerationForce;
-        _wheelRL.motorTorque = _accelerationForce;
-
-        _wheelFR.brakeTorque = _brakeForce;
-        _wheelFL.brakeTorque = _brakeForce;
-        _wheelRR.brakeTorque = _brakeForce;
-        _wheelRL.brakeTorque = _brakeForce;
-
-        _wheelFR.steerAngle = _steeringForce;
-        _wheelFL.steerAngle = _steeringForce;
+        Accelerate();
+        Brake();
+        Steer();
 
         SyncVisuals(_wheelFR, _wheelVisualFR);
         SyncVisuals(_wheelFL, _wheelVisualFL);
         SyncVisuals(_wheelRR, _wheelVisualRR);
         SyncVisuals(_wheelRL, _wheelVisualRL);
+    }
+
+    private void Accelerate()
+    {
+        _wheelFR.motorTorque = _accelerationForce;
+        _wheelFL.motorTorque = _accelerationForce;
+        _wheelRR.motorTorque = _accelerationForce;
+        _wheelRL.motorTorque = _accelerationForce;
+    }
+
+    private void Brake()
+    {
+        _wheelFR.brakeTorque = _brakeForce;
+        _wheelFL.brakeTorque = _brakeForce;
+        _wheelRR.brakeTorque = _brakeForce;
+        _wheelRL.brakeTorque = _brakeForce;
+    }
+
+    private void Steer()
+    {
+        _wheelFR.steerAngle = _steeringForce;
+        _wheelFL.steerAngle = _steeringForce;
     }
 
     private void RestartCar()

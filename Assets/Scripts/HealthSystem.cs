@@ -4,17 +4,28 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private CarSettingsSO _data;
     private float _durability;
-    private float _damage;
 
     private void Start()
     {
         _durability = _data.maxDurability;
+        Debug.Log("car has " + _durability + " left");
     }
 
-    void GetDamaged()
+    private void OnEnable()
     {
-        _durability -= _damage;
+        CollisionController.OnPlayerCrashed += GetDamaged;
+    }
+
+    private void OnDisable()
+    {
+        CollisionController.OnPlayerCrashed -= GetDamaged;
+    }
+
+    private void GetDamaged(int damage)
+    {
+        _durability -= damage;
         if (_durability < 0 )
             _durability = 0;
+        Debug.Log("car has " + _durability + " left");
     }
 }
