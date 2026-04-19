@@ -11,4 +11,5 @@ public class CarSettingsSO : ScriptableObject
     public float brakePower;
     public float steeringPower;
     public KeyCode restartCar;
+    public KeyCode changePOV;
 }

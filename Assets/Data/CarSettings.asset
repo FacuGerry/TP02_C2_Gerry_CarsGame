@@ -19,3 +19,4 @@ MonoBehaviour:
   brakePower: 250
   steeringPower: 5
   restartCar: 114
+  changePOV: 102
