@@ -20,27 +20,39 @@ public class CarMovement : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private CarSettingsSO _data;
+    private GasSystem _gasSystem;
 
     private float _accelerationForce;
     private float _brakeForce;
     private float _steeringForce;
     private Rigidbody _rb;
 
+    private bool _canMove = true;
+
     private IEnumerator _coroutineFixing;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _gasSystem = GetComponent<GasSystem>();
     }
 
     private void Start()
     {
         _rb.mass = _data.weight;
+        _canMove = true;
+    }
+
+    private void OnEnable()
+    {
+        _gasSystem.OnGasEmpty += OnGasEmpty_StopMoving;
     }
 
     private void Update()
     {
-        _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;
+        if (_canMove)
+            _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;
+
         _brakeForce = Input.GetAxis("Brake") * _data.brakePower;
         _steeringForce = Input.GetAxis("Horizontal") * _data.steeringPower;
 
@@ -54,7 +66,7 @@ public class CarMovement : MonoBehaviour
 
         OnSpeedChange?.Invoke((int)_rb.linearVelocity.magnitude);
 
-        FixRotation();
+        //FixRotation();
     }
 
     private void FixedUpdate()
@@ -62,6 +74,11 @@ public class CarMovement : MonoBehaviour
         Accelerate();
         Brake();
         Steer();
+    }
+
+    private void OnDisable()
+    {
+        _gasSystem.OnGasEmpty -= OnGasEmpty_StopMoving;
     }
 
     private void OnDestroy()
@@ -119,7 +136,7 @@ public class CarMovement : MonoBehaviour
 
     private void FixRotation()
     {
-        if (_steeringForce == 0f && transform.rotation.x != 0f)
+        if (_steeringForce > -0.01f && _steeringForce < 0.01f && transform.rotation.x != 0f)
         {
             if (_coroutineFixing != null)
                 StopCoroutine(_coroutineFixing);
@@ -145,5 +162,11 @@ public class CarMovement : MonoBehaviour
         coll.GetWorldPose(out Vector3 pos, out Quaternion rot);
         visual.position = pos;
         visual.rotation = rot;
+    }
+
+    private void OnGasEmpty_StopMoving()
+    {
+        _canMove = false;
+        _accelerationForce = 0f;
     }
 }

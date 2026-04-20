@@ -28,17 +28,15 @@ public class HealthSystem : MonoBehaviour
     private void GetDamaged(int damage)
     {
         _durability -= damage;
-        if (_durability < 0 )
+        if (_durability < 0)
             _durability = 0;
         Debug.Log("car has " + _durability + " left");
         OnLifeUpdated?.Invoke((int)_durability);
     }
 
-    private void Heal(int heal)
+    public void Heal()
     {
-        _durability += heal;
-        if (_durability > _data.maxDurability)
-            _durability = _data.maxDurability;
+        _durability = _data.maxDurability;
         Debug.Log("car healed and now has " + _durability + " left");
         OnLifeUpdated?.Invoke((int)_durability);
     }

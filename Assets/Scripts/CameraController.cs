@@ -40,10 +40,10 @@ public class CameraController : MonoBehaviour
 
     private void FollowCar()
     {
-        if (_isFirstPerson)
-            transform.position = _firstPerson.position;
-        else
-            transform.position = _thirdPerson.position;
+        Vector3 positionToGo = _isFirstPerson ?
+            new Vector3(_firstPerson.position.x, transform.position.y, _firstPerson.position.z) :
+            new Vector3(_thirdPerson.position.x, transform.position.y, _thirdPerson.position.z);
+        transform.position = positionToGo;
     }
 
     private void LookAround()
