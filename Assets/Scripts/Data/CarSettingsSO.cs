@@ -15,4 +15,8 @@ public class CarSettingsSO : ScriptableObject
     [Header("Camera controls")]
     public float cameraSensitivity;
     public KeyCode changePOV;
+
+    [Header("Gas settings")]
+    public float maxGas;
+    public float gasUsage;
 }

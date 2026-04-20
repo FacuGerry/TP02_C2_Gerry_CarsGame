@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
+    public static event Action<int> OnSpeedChange;
+
     [Header("Wheel Colliders")]
     [SerializeField] private WheelCollider _wheelFR;
     [SerializeField] private WheelCollider _wheelFL;
@@ -40,6 +43,13 @@ public class CarMovement : MonoBehaviour
 
         if (Input.GetKeyDown(_data.restartCar))
             RestartCar();
+
+        SyncVisuals(_wheelFR, _wheelVisualFR);
+        SyncVisuals(_wheelFL, _wheelVisualFL);
+        SyncVisuals(_wheelRR, _wheelVisualRR);
+        SyncVisuals(_wheelRL, _wheelVisualRL);
+
+        OnSpeedChange?.Invoke((int)_rb.linearVelocity.magnitude);
     }
 
     private void FixedUpdate()
@@ -47,11 +57,6 @@ public class CarMovement : MonoBehaviour
         Accelerate();
         Brake();
         Steer();
-
-        SyncVisuals(_wheelFR, _wheelVisualFR);
-        SyncVisuals(_wheelFL, _wheelVisualFL);
-        SyncVisuals(_wheelRR, _wheelVisualRR);
-        SyncVisuals(_wheelRL, _wheelVisualRL);
     }
 
     private void Accelerate()
@@ -60,6 +65,18 @@ public class CarMovement : MonoBehaviour
         _wheelFL.motorTorque = _accelerationForce;
         _wheelRR.motorTorque = _accelerationForce;
         _wheelRL.motorTorque = _accelerationForce;
+
+        if (_wheelFR.motorTorque > _data.maxSpeed)
+            _wheelFR.motorTorque = _data.maxSpeed;
+
+        if (_wheelFL.motorTorque > _data.maxSpeed)
+            _wheelFL.motorTorque = _data.maxSpeed;
+
+        if (_wheelRR.motorTorque > _data.maxSpeed)
+            _wheelRR.motorTorque = _data.maxSpeed;
+
+        if (_wheelRL.motorTorque > _data.maxSpeed)
+            _wheelRL.motorTorque = _data.maxSpeed;
     }
 
     private void Brake()
