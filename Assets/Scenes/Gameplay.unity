@@ -1260,6 +1260,7 @@ GameObject:
   - component: {fileID: 824873534}
   - component: {fileID: 824873536}
   - component: {fileID: 824873535}
+  - component: {fileID: 824873537}
   m_Layer: 7
   m_Name: Car
   m_TagString: Untagged
@@ -1358,6 +1359,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949301907680a8c449551349491482db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionController
+--- !u!114 &824873537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824873531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad198beb20dffe24e844d1bdd0fc6a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GasSystem
+  _data: {fileID: 11400000, guid: 214417465cb17664fb1cd5dbf2813956, type: 2}
+  _wheels:
+  - {fileID: 770996943}
+  - {fileID: 770996945}
+  - {fileID: 770996942}
+  - {fileID: 770996941}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
