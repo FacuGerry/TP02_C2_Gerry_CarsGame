@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    public static event Action<int> OnSpeedChange;
+    public static event Action<float> OnSpeedChange;
 
     [Header("Wheel Colliders")]
     [SerializeField] private WheelCollider _wheelFR;
@@ -28,8 +27,6 @@ public class CarMovement : MonoBehaviour
     private Rigidbody _rb;
 
     private bool _canMove = true;
-
-    private IEnumerator _coroutineFixing;
 
     private void Awake()
     {
@@ -64,9 +61,7 @@ public class CarMovement : MonoBehaviour
         SyncVisuals(_wheelRR, _wheelVisualRR);
         SyncVisuals(_wheelRL, _wheelVisualRL);
 
-        OnSpeedChange?.Invoke((int)_rb.linearVelocity.magnitude);
-
-        //FixRotation();
+        OnSpeedChange?.Invoke(_rb.linearVelocity.magnitude * 10f);
     }
 
     private void FixedUpdate()
@@ -74,6 +69,7 @@ public class CarMovement : MonoBehaviour
         Accelerate();
         Brake();
         Steer();
+        FixRotation();
     }
 
     private void OnDisable()
@@ -81,43 +77,15 @@ public class CarMovement : MonoBehaviour
         _gasSystem.OnGasEmpty -= OnGasEmpty_StopMoving;
     }
 
-    private void OnDestroy()
-    {
-        StopAllCoroutines();
-    }
-
-    private IEnumerator FixingRotation()
-    {
-        float clock = 0f;
-        Quaternion rotationToGo = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
-        while (clock < _data.timeToResetRotation)
-        {
-            clock += Time.deltaTime;
-            float lerp = clock / _data.timeToResetRotation;
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotationToGo, lerp);
-            yield return null;
-        }
-        yield return null;
-    }
-
     private void Accelerate()
     {
+        if (_rb.linearVelocity.magnitude >= _data.maxSpeed)
+            _accelerationForce = _data.maxSpeed;
+
         _wheelFR.motorTorque = _accelerationForce;
         _wheelFL.motorTorque = _accelerationForce;
         _wheelRR.motorTorque = _accelerationForce;
         _wheelRL.motorTorque = _accelerationForce;
-
-        if (_wheelFR.motorTorque > _data.maxSpeed)
-            _wheelFR.motorTorque = _data.maxSpeed;
-
-        if (_wheelFL.motorTorque > _data.maxSpeed)
-            _wheelFL.motorTorque = _data.maxSpeed;
-
-        if (_wheelRR.motorTorque > _data.maxSpeed)
-            _wheelRR.motorTorque = _data.maxSpeed;
-
-        if (_wheelRL.motorTorque > _data.maxSpeed)
-            _wheelRL.motorTorque = _data.maxSpeed;
     }
 
     private void Brake()
@@ -136,13 +104,13 @@ public class CarMovement : MonoBehaviour
 
     private void FixRotation()
     {
-        if (_steeringForce > -0.01f && _steeringForce < 0.01f && transform.rotation.x != 0f)
+        if (Mathf.Abs(_steeringForce) < 0.01f)
         {
-            if (_coroutineFixing != null)
-                StopCoroutine(_coroutineFixing);
+            Quaternion currentRot = _rb.rotation;
 
-            _coroutineFixing = FixingRotation();
-            StartCoroutine(_coroutineFixing);
+            Quaternion targetRot = Quaternion.Euler(0f, currentRot.eulerAngles.y, 0f);
+
+            _rb.rotation = Quaternion.Slerp(currentRot, targetRot, _data.timeToResetRotation * Time.fixedDeltaTime);
         }
     }
 

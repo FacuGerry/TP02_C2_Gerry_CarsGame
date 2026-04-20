@@ -15,8 +15,8 @@ public class UiSpeedometer : MonoBehaviour
         CarMovement.OnSpeedChange -= ChangeSpeed;
     }
 
-    private void ChangeSpeed(int speed)
+    private void ChangeSpeed(float speed)
     {
-        _text.text = speed.ToString();
+        _text.text = speed.ToString("0");
     }
 }
