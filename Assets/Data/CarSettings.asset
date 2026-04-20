@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: CarSettings
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettingsSO
   maxDurability: 50
-  maxSpeed: 50
+  maxSpeed: 500
   weight: 1500
   horsePower: 500
   brakePower: 250
   steeringPower: 5
   restartCar: 114
-  cameraSensitivity: 0
   changePOV: 102
   maxGas: 50
   gasUsage: 0.01

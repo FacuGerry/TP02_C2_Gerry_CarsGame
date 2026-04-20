@@ -17,6 +17,6 @@ public class UiLife : MonoBehaviour
 
     private void UpdateLife(int life)
     {
-        _life.text = "LIFE: " + life.ToString();
+        _life.text = life.ToString();
     }
 }

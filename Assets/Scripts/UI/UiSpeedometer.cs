@@ -17,6 +17,6 @@ public class UiSpeedometer : MonoBehaviour
 
     private void ChangeSpeed(int speed)
     {
-        _text.text = "SPEED: " + speed.ToString();
+        _text.text = speed.ToString();
     }
 }

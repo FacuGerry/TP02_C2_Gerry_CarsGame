@@ -17,6 +17,6 @@ public class UiGasUsage : MonoBehaviour
 
     private void ChangeGas(float gas)
     {
-        _text.text = "GAS: " + gas.ToString("0.00");
+        _text.text = gas.ToString("0.00");
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
@@ -19,11 +20,14 @@ public class CarMovement : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private CarSettingsSO _data;
+    [SerializeField] private float _timeToFixRotation = 0.3f;
 
     private float _accelerationForce;
     private float _brakeForce;
     private float _steeringForce;
     private Rigidbody _rb;
+
+    private IEnumerator _coroutineFixing;
 
     private void Awake()
     {
@@ -50,6 +54,8 @@ public class CarMovement : MonoBehaviour
         SyncVisuals(_wheelRL, _wheelVisualRL);
 
         OnSpeedChange?.Invoke((int)_rb.linearVelocity.magnitude);
+
+        FixRotation();
     }
 
     private void FixedUpdate()
@@ -57,6 +63,25 @@ public class CarMovement : MonoBehaviour
         Accelerate();
         Brake();
         Steer();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    private IEnumerator FixingRotation()
+    {
+        float clock = 0f;
+        Quaternion rotationToGo = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+        while (clock < _timeToFixRotation)
+        {
+            clock += Time.deltaTime;
+            float lerp = clock / _timeToFixRotation;
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotationToGo, lerp);
+            yield return null;
+        }
+        yield return null;
     }
 
     private void Accelerate()
@@ -91,6 +116,18 @@ public class CarMovement : MonoBehaviour
     {
         _wheelFR.steerAngle = _steeringForce;
         _wheelFL.steerAngle = _steeringForce;
+    }
+
+    private void FixRotation()
+    {
+        if (_steeringForce == 0f)
+        {
+            if (_coroutineFixing != null)
+                StopCoroutine(_coroutineFixing);
+
+            _coroutineFixing = FixingRotation();
+            StartCoroutine(_coroutineFixing);
+        }
     }
 
     private void RestartCar()
