@@ -120,7 +120,7 @@ public class CarMovement : MonoBehaviour
 
     private void FixRotation()
     {
-        if (_steeringForce == 0f)
+        if (_steeringForce == 0f && transform.rotation.x != 0f)
         {
             if (_coroutineFixing != null)
                 StopCoroutine(_coroutineFixing);
