@@ -14,9 +14,9 @@ TagManager:
   - 
   - Car
   - Obstacles
-  - 
-  - 
-  - 
+  - CarCollider
+  - CarTrigger
+  - BoxesAndPits
   - 
   - 
   - 

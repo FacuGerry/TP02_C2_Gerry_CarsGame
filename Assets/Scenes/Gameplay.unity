@@ -995,7 +995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6929362349232364809, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6929362349232364809, guid: 799e1a5517f71ee4cbe64f20f633b2bc, type: 3}
       propertyPath: m_IsActive
@@ -1489,9 +1489,9 @@ GameObject:
   - component: {fileID: 824873532}
   - component: {fileID: 824873533}
   - component: {fileID: 824873534}
-  - component: {fileID: 824873536}
   - component: {fileID: 824873535}
   - component: {fileID: 824873537}
+  - component: {fileID: 824873538}
   m_Layer: 7
   m_Name: Car
   m_TagString: Untagged
@@ -1579,18 +1579,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
   _data: {fileID: 11400000, guid: 214417465cb17664fb1cd5dbf2813956, type: 2}
---- !u!114 &824873536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824873531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949301907680a8c449551349491482db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollisionController
 --- !u!114 &824873537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,6 +1597,18 @@ MonoBehaviour:
   - {fileID: 770996945}
   - {fileID: 770996942}
   - {fileID: 770996941}
+--- !u!114 &824873538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824873531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949301907680a8c449551349491482db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionController
 --- !u!1001 &858916458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2143,7 +2143,7 @@ GameObject:
   - component: {fileID: 1542166555}
   - component: {fileID: 1542166554}
   - component: {fileID: 1542166553}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: bodyTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
