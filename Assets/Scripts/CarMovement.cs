@@ -20,7 +20,6 @@ public class CarMovement : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private CarSettingsSO _data;
-    [SerializeField] private float _timeToFixRotation = 0.3f;
 
     private float _accelerationForce;
     private float _brakeForce;
@@ -74,10 +73,10 @@ public class CarMovement : MonoBehaviour
     {
         float clock = 0f;
         Quaternion rotationToGo = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
-        while (clock < _timeToFixRotation)
+        while (clock < _data.timeToResetRotation)
         {
             clock += Time.deltaTime;
-            float lerp = clock / _timeToFixRotation;
+            float lerp = clock / _data.timeToResetRotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, rotationToGo, lerp);
             yield return null;
         }

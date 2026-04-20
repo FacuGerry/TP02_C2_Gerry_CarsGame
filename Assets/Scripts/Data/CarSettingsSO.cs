@@ -10,6 +10,7 @@ public class CarSettingsSO : ScriptableObject
     public float horsePower;
     public float brakePower;
     public float steeringPower;
+    public float timeToResetRotation;
     public KeyCode restartCar;
 
     [Header("Camera controls")]
