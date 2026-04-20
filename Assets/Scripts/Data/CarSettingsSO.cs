@@ -13,7 +13,6 @@ public class CarSettingsSO : ScriptableObject
     public KeyCode restartCar;
 
     [Header("Camera controls")]
-    public float cameraSensitivity;
     public KeyCode changePOV;
 
     [Header("Gas settings")]

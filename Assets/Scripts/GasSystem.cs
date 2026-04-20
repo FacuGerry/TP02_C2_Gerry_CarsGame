@@ -21,9 +21,7 @@ public class GasSystem : MonoBehaviour
 
     private void Update()
     {
-        float rpm = CalculateRPM();
-        float multiplier = (rpm / 1000f);
-        _gas -= _data.gasUsage * multiplier;
+        _gas -= _data.gasUsage * CalculateRPM() / 1000f;
         OnGasChange?.Invoke(_gas);
     }
 

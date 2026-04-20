@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    public static event Action<int> OnLifeUpdated;
+
     [SerializeField] private CarSettingsSO _data;
     private float _durability;
 
@@ -9,6 +12,7 @@ public class HealthSystem : MonoBehaviour
     {
         _durability = _data.maxDurability;
         Debug.Log("car has " + _durability + " left");
+        OnLifeUpdated?.Invoke((int)_durability);
     }
 
     private void OnEnable()
@@ -27,6 +31,7 @@ public class HealthSystem : MonoBehaviour
         if (_durability < 0 )
             _durability = 0;
         Debug.Log("car has " + _durability + " left");
+        OnLifeUpdated?.Invoke((int)_durability);
     }
 
     private void Heal(int heal)
@@ -35,5 +40,6 @@ public class HealthSystem : MonoBehaviour
         if (_durability > _data.maxDurability)
             _durability = _data.maxDurability;
         Debug.Log("car healed and now has " + _durability + " left");
+        OnLifeUpdated?.Invoke((int)_durability);
     }
 }
