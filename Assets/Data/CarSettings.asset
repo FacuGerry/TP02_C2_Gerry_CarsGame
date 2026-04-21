@@ -15,11 +15,11 @@ MonoBehaviour:
   maxDurability: 50
   maxSpeed: 1000000
   weight: 1500
-  horsePower: 750
-  brakePower: 250
-  steeringPower: 25
-  timeToResetRotation: 1.3
+  horsePower: 1500
+  brakePower: 750
+  steeringPower: 50
+  timeToResetRotation: 5
   restartCar: 114
   changePOV: 102
   maxGas: 50
-  gasUsage: 0
+  gasUsage: 0.5

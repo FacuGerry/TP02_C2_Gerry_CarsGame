@@ -6,16 +6,23 @@ public class GasAndPitsTriggerController : MonoBehaviour
 
     private Collider _coll;
     private bool _isInside = false;
+    private bool _hasRecovered = false;
 
     private void Awake()
     {
         _coll = GetComponent<Collider>();
     }
 
+    private void Start()
+    {
+        _isInside = false;
+        _hasRecovered = false;
+    }
+
     private void OnTriggerStay(Collider coll)
     {
         _isInside = IsFullyInside(coll);
-        if (_isInside)
+        if (_isInside && !_hasRecovered)
         {
             if (_isPitStop)
             {
@@ -29,12 +36,14 @@ public class GasAndPitsTriggerController : MonoBehaviour
                 if (carGas != null)
                     carGas.FuelUp();
             }
+            _hasRecovered = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         _isInside = false;
+        _hasRecovered = false;
     }
 
     private bool IsFullyInside(Collider car)
@@ -48,12 +57,8 @@ public class GasAndPitsTriggerController : MonoBehaviour
         {
             new Vector3(min.x, min.y, min.z),
             new Vector3(max.x, min.y, min.z),
-            new Vector3(min.x, max.y, min.z),
-            new Vector3(max.x, max.y, min.z),
             new Vector3(min.x, min.y, max.z),
             new Vector3(max.x, min.y, max.z),
-            new Vector3(min.x, max.y, max.z),
-            new Vector3(max.x, max.y, max.z)
         };
 
         foreach (Vector3 corner in corners)

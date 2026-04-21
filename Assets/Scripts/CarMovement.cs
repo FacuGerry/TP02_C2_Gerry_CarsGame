@@ -61,14 +61,14 @@ public class CarMovement : MonoBehaviour
         SyncVisuals(_wheelRR, _wheelVisualRR);
         SyncVisuals(_wheelRL, _wheelVisualRL);
 
-        OnSpeedChange?.Invoke(_rb.linearVelocity.magnitude * 10f);
+        OnSpeedChange?.Invoke(_rb.linearVelocity.magnitude * 3.6f);
     }
 
     private void FixedUpdate()
     {
+        Steer();
         Accelerate();
         Brake();
-        Steer();
         FixRotation();
     }
 

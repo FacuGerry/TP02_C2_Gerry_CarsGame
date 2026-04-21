@@ -9,21 +9,30 @@ public class GasSystem : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private CarSettingsSO _data;
+    [SerializeField] private float _consumeInterval = 1f;
 
     [Header("Wheels")]
     [SerializeField] private List<WheelCollider> _wheels = new List<WheelCollider>();
 
     private float _gas;
+    private float _timer;
 
     private void Start()
     {
         _gas = _data.maxGas;
+        OnGasChange?.Invoke(_gas);
     }
 
     private void Update()
     {
-        // Por ahora anda, pero me gustaría tener una cuenta que gaste cada 'x' tiempo
-        _gas -= _data.gasUsage * CalculateRPM() / 1000f;
+        _timer += Time.deltaTime;
+
+        if (_timer < _consumeInterval)
+            return;
+
+        _timer = 0f;
+
+        _gas -= _data.gasUsage * CalculateRPM() / 1000f * Time.deltaTime;
         if (_gas < 0)
         {
             _gas = 0;
