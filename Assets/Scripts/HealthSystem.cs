@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public static event Action<int> OnLifeUpdated;
+    public event Action<int> OnLifeUpdated;
 
     [SerializeField] private CarSettingsSO _data;
+    [SerializeField] private CollisionController _collisionController;
     private float _durability;
 
     private void Start()
@@ -17,12 +18,12 @@ public class HealthSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        CollisionController.OnPlayerCrashed += GetDamaged;
+        _collisionController.OnPlayerCrashed += GetDamaged;
     }
 
     private void OnDisable()
     {
-        CollisionController.OnPlayerCrashed -= GetDamaged;
+        _collisionController.OnPlayerCrashed -= GetDamaged;
     }
 
     private void GetDamaged(int damage)

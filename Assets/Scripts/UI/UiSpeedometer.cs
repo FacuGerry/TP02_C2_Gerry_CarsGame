@@ -4,15 +4,16 @@ using UnityEngine;
 public class UiSpeedometer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private CarMovement _carMovement;
 
     private void OnEnable()
     {
-        CarMovement.OnSpeedChange += ChangeSpeed;
+        _carMovement.OnSpeedChange += ChangeSpeed;
     }
 
     private void OnDisable()
     {
-        CarMovement.OnSpeedChange -= ChangeSpeed;
+        _carMovement.OnSpeedChange -= ChangeSpeed;
     }
 
     private void ChangeSpeed(float speed)

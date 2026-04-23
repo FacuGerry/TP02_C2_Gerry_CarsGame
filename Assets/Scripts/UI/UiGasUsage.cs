@@ -4,15 +4,16 @@ using UnityEngine;
 public class UiGasUsage : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private GasSystem _gasSystem;
 
     private void OnEnable()
     {
-        GasSystem.OnGasChange += ChangeGas;
+        _gasSystem.OnGasChange += ChangeGas;
     }
 
     private void OnDisable()
     {
-        GasSystem.OnGasChange -= ChangeGas;
+        _gasSystem.OnGasChange -= ChangeGas;
     }
 
     private void ChangeGas(float gas)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    public static event Action<float> OnSpeedChange;
+    public event Action<float> OnSpeedChange;
 
     [Header("Wheel Colliders")]
     [SerializeField] private WheelCollider _wheelFR;

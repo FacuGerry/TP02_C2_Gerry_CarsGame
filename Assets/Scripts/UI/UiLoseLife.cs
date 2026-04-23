@@ -6,6 +6,7 @@ using UnityEngine;
 public class UiLoseLife : MonoBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> _life = new List<TextMeshProUGUI>();
+    [SerializeField] private CollisionController _collisionController;
     [SerializeField] private int _numberOfChanges;
 
     private Dictionary<TextMeshProUGUI, Coroutine> _coroutines = new Dictionary<TextMeshProUGUI, Coroutine>();
@@ -18,12 +19,12 @@ public class UiLoseLife : MonoBehaviour
 
     private void OnEnable()
     {
-        CollisionController.OnPlayerCrashed += ShowText;
+        _collisionController.OnPlayerCrashed += ShowText;
     }
 
     private void OnDisable()
     {
-        CollisionController.OnPlayerCrashed -= ShowText;
+        _collisionController.OnPlayerCrashed -= ShowText;
     }
 
     private void OnDestroy()

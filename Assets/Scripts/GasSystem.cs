@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GasSystem : MonoBehaviour
 {
-    public static event Action<float> OnGasChange;
+    public event Action<float> OnGasChange;
     public event Action OnGasEmpty;
 
     [Header("Data")]

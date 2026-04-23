@@ -4,15 +4,16 @@ using UnityEngine;
 public class UiLife : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _life;
+    [SerializeField] private HealthSystem _healthSystem;
 
     private void OnEnable()
     {
-        HealthSystem.OnLifeUpdated += UpdateLife;
+        _healthSystem.OnLifeUpdated += UpdateLife;
     }
 
     private void OnDisable()
     {
-        HealthSystem.OnLifeUpdated -= UpdateLife;
+        _healthSystem.OnLifeUpdated -= UpdateLife;
     }
 
     private void UpdateLife(int life)
