@@ -40,10 +40,22 @@ public class GasAndPitsTriggerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider coll)
     {
         _isInside = false;
         _hasRecovered = false;
+        if (_isPitStop)
+        {
+            HealthSystem carHealth = coll.GetComponentInParent<HealthSystem>();
+            if (carHealth != null)
+                carHealth.StopHeal();
+        }
+        else
+        {
+            GasSystem carGas = coll.GetComponentInParent<GasSystem>();
+            if (carGas != null)
+                carGas.StopFuelUp();
+        }
     }
 
     private bool IsFullyInside(Collider car)

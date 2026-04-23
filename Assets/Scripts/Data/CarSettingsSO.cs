@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CarSettingsSO : ScriptableObject
 {
-    public float maxDurability;
     public float maxSpeed;
     public float weight;
     public float horsePower;
@@ -16,7 +15,12 @@ public class CarSettingsSO : ScriptableObject
     [Header("Camera controls")]
     public KeyCode changePOV;
 
+    [Header("Durability settings")]
+    public float maxDurability;
+    public float durabilityToCharge;
+
     [Header("Gas settings")]
     public float maxGas;
     public float gasUsage;
+    public float gasToCharge;
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class GasSystem : MonoBehaviour
     private float _gas;
     private float _timer;
 
+    private IEnumerator _coroutineGas;
     private void Start()
     {
         _gas = _data.maxGas;
@@ -42,6 +44,27 @@ public class GasSystem : MonoBehaviour
         OnGasChange?.Invoke(_gas);
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    private IEnumerator FuelingUp()
+    {
+        while (_gas < _data.maxGas)
+        {
+            _gas += _data.gasToCharge * Time.deltaTime;
+
+            if (_gas >= _data.maxGas)
+                _gas = _data.maxGas;
+
+            OnGasChange?.Invoke(_gas);
+
+            yield return null;
+        }
+        yield return null;
+    }
+
     private float CalculateRPM()
     {
         float rpm = 0;
@@ -55,8 +78,16 @@ public class GasSystem : MonoBehaviour
 
     public void FuelUp()
     {
-        _gas = _data.maxGas;
-        Debug.Log("car fueled up and now has " + _gas + " litres left");
-        OnGasChange?.Invoke(_gas);
+        if (_coroutineGas != null)
+            StopCoroutine(_coroutineGas);
+
+        _coroutineGas = FuelingUp();
+        StartCoroutine(_coroutineGas);
+    }
+
+    public void StopFuelUp()
+    {
+        if (_coroutineGas != null)
+            StopCoroutine(_coroutineGas);
     }
 }
