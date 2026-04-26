@@ -16,7 +16,7 @@ MonoBehaviour:
   weight: 1500
   horsePower: 750
   brakePower: 375
-  steeringPower: 50
+  steeringPower: 30
   timeToResetRotation: 5
   restartCar: 114
   changePOV: 102
