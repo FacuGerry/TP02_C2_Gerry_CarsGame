@@ -6,13 +6,14 @@ public class SfxManager : MonoBehaviour
 
     [Header("Events subscribers")]
     [SerializeField] private HealthSystem _healthSystem;
+    [SerializeField] private PlayerShoot _playerShoot;
 
     [Header("Sources")]
     [SerializeField] private AudioSource _sfx;
     [SerializeField] private AudioSource _ui;
 
     [Header("Player")]
-    [SerializeField] private AudioClip _playerShoot;
+    [SerializeField] private AudioClip _playerShootClip;
     [SerializeField] private AudioClip _playerSecondShoot;
     [SerializeField] private AudioClip _playerDamaged;
     [SerializeField] private AudioClip _playerDie;
@@ -46,8 +47,8 @@ public class SfxManager : MonoBehaviour
         NpcHealthSystem.OnNpcDamaged += OnNpcDamaged_PlayClip;
         NpcHealthSystem.OnNpcDie += OnNpcDie_PlayClip;
 
-        PlayerShoot.OnPlayerShoot += OnPlayerShoot_PlayClip;
-        PlayerShoot.OnPlayerSecondShoot += OnPlayerSecondShoot_PlayClip;
+        _playerShoot.OnPlayerShoot += OnPlayerShoot_PlayClip;
+        _playerShoot.OnPlayerSecondShoot += OnPlayerSecondShoot_PlayClip;
 
         NpcController.OnNpcShoot += OnEnemyShoot_PlayClip;
 
@@ -63,8 +64,8 @@ public class SfxManager : MonoBehaviour
         NpcHealthSystem.OnNpcDamaged -= OnNpcDamaged_PlayClip;
         NpcHealthSystem.OnNpcDie -= OnNpcDie_PlayClip;
 
-        PlayerShoot.OnPlayerShoot -= OnPlayerShoot_PlayClip;
-        PlayerShoot.OnPlayerSecondShoot -= OnPlayerSecondShoot_PlayClip;
+        _playerShoot.OnPlayerShoot -= OnPlayerShoot_PlayClip;
+        _playerShoot.OnPlayerSecondShoot -= OnPlayerSecondShoot_PlayClip;
 
         NpcController.OnNpcShoot -= OnEnemyShoot_PlayClip;
 
@@ -74,7 +75,7 @@ public class SfxManager : MonoBehaviour
 
     private void OnPlayerShoot_PlayClip()
     {
-        _sfx.PlayOneShot(_playerShoot);
+        _sfx.PlayOneShot(_playerShootClip);
     }
 
     private void OnPlayerSecondShoot_PlayClip()

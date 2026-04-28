@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public static event Action OnPlayerShoot;
-    public static event Action OnPlayerSecondShoot;
+    public event Action OnPlayerShoot;
+    public event Action OnPlayerSecondShoot;
 
     [SerializeField] private KeyBindingsSO _keys;
     [SerializeField] private Transform _shootingPos;
-    [SerializeField] private float _normalBulletDistance;
+    [SerializeField] private float _normalBulletDistance = 100f;
 
     [Header("Second bullet stats")]
-    [SerializeField] private List<GameObject> _bullets = new List<GameObject>();
-    [SerializeField] private float _bulletDuration;
-    [SerializeField] private float _bulletDistance;
-    [SerializeField] private int _bulletDamage;
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private int _bulletsToCreate = 20;
+    [SerializeField] private float _bulletDuration = 2f;
+    [SerializeField] private float _bulletDistance = 10f;
+    [SerializeField] private int _bulletDamage = 50;
     [SerializeField] private GameObject _cheatLine;
 
+    private List<GameObject> _bullets = new List<GameObject>();
     private List<BulletMovement> _bulletMovements = new List<BulletMovement>();
     private bool _isShooting = false;
     private bool _startedShooting = false;
@@ -28,6 +30,11 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < _bulletsToCreate; i++)
+        {
+            _bullets.Add(_bulletPrefab);
+        }
+
         foreach (GameObject bullet in _bullets)
             _bulletMovements.Add(bullet.GetComponent<BulletMovement>());
     }

@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PlayerDie : MonoBehaviour
 {
-    [Header("Events subscribers")]
-    [SerializeField] private HealthSystem _healthSystem;
+   private HealthSystem _healthSystem;
+
+    private void Awake()
+    {
+        _healthSystem = GetComponent<HealthSystem>();
+    }
 
     private void OnEnable()
     {
