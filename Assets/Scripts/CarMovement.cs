@@ -19,6 +19,7 @@ public class CarMovement : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private CarSettingsSO _data;
+    [SerializeField] private PositionManager _posMng;
     private GasSystem _gasSystem;
 
     private float _accelerationForce;
@@ -116,13 +117,13 @@ public class CarMovement : MonoBehaviour
 
     private void RestartCar()
     {
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
-
         _rb.linearVelocity = Vector3.zero;
 
         _wheelFR.steerAngle = 0;
         _wheelFL.steerAngle = 0;
+
+        transform.position = _posMng.GetCurrentPosition();
+        transform.localEulerAngles = _posMng.GetCurrentRotation();
     }
 
     private void SyncVisuals(WheelCollider coll, Transform visual)
