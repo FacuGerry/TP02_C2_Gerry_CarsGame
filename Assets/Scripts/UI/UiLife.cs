@@ -16,7 +16,7 @@ public class UiLife : MonoBehaviour
         _healthSystem.OnLifeUpdated -= UpdateLife;
     }
 
-    private void UpdateLife(int life)
+    private void UpdateLife(int life, int maxLife)
     {
         _life.text = life.ToString();
     }

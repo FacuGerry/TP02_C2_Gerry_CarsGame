@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public event Action<int> OnLifeUpdated;
+    public event Action OnPlayerDamaged;
+    public event Action<int, int> OnLifeUpdated; // current life, max life
+    public event Action OnPlayerDie;
 
     [SerializeField] private CarSettingsSO _data;
     [SerializeField] private CollisionController _collisionController;
@@ -16,7 +18,7 @@ public class HealthSystem : MonoBehaviour
     {
         _durability = _data.maxDurability;
         Debug.Log("car has " + _durability + " left");
-        OnLifeUpdated?.Invoke((int)_durability);
+        OnLifeUpdated?.Invoke((int)_durability, (int)_data.maxDurability);
     }
 
     private void OnEnable()
@@ -43,7 +45,7 @@ public class HealthSystem : MonoBehaviour
             if (_durability >= _data.maxDurability)
                 _durability = _data.maxDurability;
 
-            OnLifeUpdated?.Invoke((int)_durability);
+            OnLifeUpdated?.Invoke((int)_durability, (int)_data.maxDurability);
 
             yield return null;
         }
@@ -54,9 +56,18 @@ public class HealthSystem : MonoBehaviour
     {
         _durability -= damage;
         if (_durability < 0)
+        {
             _durability = 0;
+            OnPlayerDie?.Invoke();
+        }
         Debug.Log("car has " + _durability + " left");
-        OnLifeUpdated?.Invoke((int)_durability);
+        OnPlayerDamaged?.Invoke();
+        OnLifeUpdated?.Invoke((int)_durability, (int)_data.maxDurability);
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        GetDamaged(dmg);
     }
 
     public void Heal()
