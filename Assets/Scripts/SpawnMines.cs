@@ -38,9 +38,9 @@ public class SpawnMines : MonoBehaviour
 
             Bounds bounds = coll.bounds;
             Vector3 randomOffset = new Vector3(Random.Range(-bounds.extents.x, bounds.extents.x), 0f, Random.Range(-bounds.extents.z, bounds.extents.z));
-            Vector3 pos = coll.transform.TransformPoint(randomOffset);
+            Vector3 pos = bounds.center + randomOffset;
 
-            mine.transform.position = randomOffset;
+            mine.transform.position = pos;
         }
     }
 }
