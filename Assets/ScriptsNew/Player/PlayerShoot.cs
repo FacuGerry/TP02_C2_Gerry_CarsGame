@@ -12,11 +12,14 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Transform _shootingPos;
     [SerializeField] private float _normalBulletDistance = 100f;
 
-    [Header("Second bullet stats")]
+    [Header("Second bullet settings")]
+    [SerializeField] private ObjectPooler _pool;
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private GameObject _bulletsParent;
     [SerializeField] private int _bulletsToCreate = 20;
     [SerializeField] private float _bulletDuration = 2f;
     [SerializeField] private float _bulletDistance = 10f;
+    [SerializeField] private float _bulletHeight = 10f;
     [SerializeField] private int _bulletDamage = 50;
     [SerializeField] private GameObject _cheatLine;
 
@@ -30,10 +33,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < _bulletsToCreate; i++)
-        {
-            _bullets.Add(_bulletPrefab);
-        }
+        _pool.CreatePool(_bulletPrefab, _bulletsParent, _bulletsToCreate, _bullets, false);
 
         foreach (GameObject bullet in _bullets)
             _bulletMovements.Add(bullet.GetComponent<BulletMovement>());
@@ -95,12 +95,16 @@ public class PlayerShoot : MonoBehaviour
         {
             OnPlayerShoot?.Invoke();
             RaycastHit ray;
-            if (Physics.Raycast(_shootingPos.transform.position, transform.forward, out ray, _normalBulletDistance))
+            if (Physics.Raycast(_shootingPos.position, transform.forward, out ray, _normalBulletDistance))
+            {
                 if (ray.collider != null && ray.collider.TryGetComponent(out NpcHealthSystem npc))
                 {
                     npc.OnNormalShot_TakeDamage(_bulletDamage);
                     Debug.Log("Hit an NPC");
                 }
+                else
+                    Debug.Log("you bad bro");
+            }
             yield return new WaitForSeconds(0.3f);
         }
     }
@@ -111,9 +115,8 @@ public class PlayerShoot : MonoBehaviour
         {
             if (!_bullets[i].activeInHierarchy)
             {
-                // NEW METHOD
                 _bullets[i].SetActive(true);
-                _bulletMovements[i].Shoot(_shootingPos.position, _bulletDistance, _bulletDuration, gameObject);
+                _bulletMovements[i].Shoot(_shootingPos, _bulletDistance, _bulletHeight, _bulletDuration, gameObject);
                 OnPlayerSecondShoot?.Invoke();
                 return;
             }

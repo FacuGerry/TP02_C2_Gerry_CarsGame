@@ -10,10 +10,6 @@ public class CarSettingsSO : ScriptableObject
     public float brakePower;
     public float steeringPower;
     public float timeToResetRotation;
-    public KeyCode restartCar;
-
-    [Header("Camera controls")]
-    public KeyCode changePOV;
 
     [Header("Durability settings")]
     public float maxDurability;

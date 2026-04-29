@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ab66435cce3c64e834741bd6657730, type: 3}
+  m_Name: KeyBindings
+  m_EditorClassIdentifier: Assembly-CSharp::KeyBindingsSO
+  restartCar: 114
+  changePOV: 102
+  pause: 27
+  pause2: 13
+  pause3: 112
+  shoot: 323
+  secondShoot: 101
+  showCheat: 116

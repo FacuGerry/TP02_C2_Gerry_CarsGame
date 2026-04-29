@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private CarSettingsSO _data;
+    [SerializeField] private KeyBindingsSO _keys;
     [SerializeField] private Transform _firstPerson;
     [SerializeField] private Transform _thirdPerson;
     [SerializeField] private float _angleFirstPerson = 0f;
@@ -23,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(_data.changePOV))
+        if (Input.GetKeyDown(_keys.changePOV))
         {
             _isFirstPerson = !_isFirstPerson;
             SetRotation();

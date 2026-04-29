@@ -20,6 +20,7 @@ public class CarMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private CarSettingsSO _data;
     [SerializeField] private PositionManager _posMng;
+    [SerializeField] private KeyBindingsSO _keys;
     private GasSystem _gasSystem;
 
     private float _accelerationForce;
@@ -54,7 +55,7 @@ public class CarMovement : MonoBehaviour
         _brakeForce = Input.GetAxis("Brake") * _data.brakePower;
         _steeringForce = Input.GetAxis("Horizontal") * _data.steeringPower;
 
-        if (Input.GetKeyDown(_data.restartCar))
+        if (Input.GetKeyDown(_keys.restartCar))
             RestartCar();
 
         SyncVisuals(_wheelFR, _wheelVisualFR);
