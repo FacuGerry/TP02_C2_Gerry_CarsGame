@@ -5,9 +5,8 @@ public class SpawnMines : MonoBehaviour
 {
     [Header("Pool settings")]
     [SerializeField] private ObjectPooler _pool;
-    [SerializeField] private GameObject _minePrefab;
     [SerializeField] private GameObject _mineParent;
-    [SerializeField] private int _spawnCount = 20;
+    [SerializeField] private ObjectDataSO _data;
     private List<GameObject> _mines = new List<GameObject>();
 
     [Header("Mine settings")]
@@ -15,7 +14,7 @@ public class SpawnMines : MonoBehaviour
 
     private void Awake()
     {
-        _pool.CreatePool(_minePrefab, _mineParent, _spawnCount, _mines, true);
+        _pool.CreatePool(_data.prefab, _mineParent, _data.spawnCount, _mines, true);
     }
 
     private void Start()

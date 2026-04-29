@@ -986,6 +986,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: grandStand
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082525421625166117, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2799,9 +2807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnMines
   _pool: {fileID: 1180552736}
-  _minePrefab: {fileID: 5935157435752104870, guid: 9f41d372a2c92b64db6e2c37f5e27110, type: 3}
   _mineParent: {fileID: 144426564}
-  _spawnCount: 20
+  _data: {fileID: 11400000, guid: 795178e5260daf2498b32c6059256c16, type: 2}
   _spawnPlaces:
   - {fileID: 4970620350827195263}
   - {fileID: 1122883148}
@@ -3447,6 +3454,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
       propertyPath: m_Name
       value: grandStand (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082525421625166117, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4725,13 +4740,8 @@ MonoBehaviour:
   _shootingPos: {fileID: 1533088390}
   _normalBulletDistance: 100
   _pool: {fileID: 1180552736}
-  _bulletPrefab: {fileID: 6306378854264674115, guid: 07b9ef60e8c45de49908999ef91173e3, type: 3}
   _bulletsParent: {fileID: 2107881123}
-  _bulletsToCreate: 20
-  _bulletDuration: 2
-  _bulletDistance: 20
-  _bulletHeight: 20
-  _bulletDamage: 50
+  _data: {fileID: 11400000, guid: d7b6a86f7db04e04e90e521b2ede82c1, type: 2}
   _cheatLine: {fileID: 1732872854}
 --- !u!1001 &828124641
 PrefabInstance:
@@ -6228,6 +6238,10 @@ PrefabInstance:
     - target: {fileID: 6439520150437553952, guid: f5b022aa8dd276948bf474148b21a334, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892755633079974833, guid: f5b022aa8dd276948bf474148b21a334, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8432,6 +8446,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
       propertyPath: m_Name
       value: grandStand (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082525421625166117, guid: 3963d12c14c8ab94c9cb580008efbafb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11217,6 +11239,10 @@ PrefabInstance:
     - target: {fileID: 6439520150437553952, guid: f5b022aa8dd276948bf474148b21a334, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892755633079974833, guid: f5b022aa8dd276948bf474148b21a334, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

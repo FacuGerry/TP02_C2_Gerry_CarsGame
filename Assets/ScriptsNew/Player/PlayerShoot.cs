@@ -14,13 +14,8 @@ public class PlayerShoot : MonoBehaviour
 
     [Header("Second bullet settings")]
     [SerializeField] private ObjectPooler _pool;
-    [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletsParent;
-    [SerializeField] private int _bulletsToCreate = 20;
-    [SerializeField] private float _bulletDuration = 2f;
-    [SerializeField] private float _bulletDistance = 10f;
-    [SerializeField] private float _bulletHeight = 10f;
-    [SerializeField] private int _bulletDamage = 50;
+    [SerializeField] private ObjectDataSO _data;
     [SerializeField] private GameObject _cheatLine;
 
     private List<GameObject> _bullets = new List<GameObject>();
@@ -33,7 +28,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        _pool.CreatePool(_bulletPrefab, _bulletsParent, _bulletsToCreate, _bullets, false);
+        _pool.CreatePool(_data.prefab, _bulletsParent, _data.spawnCount, _bullets, false);
 
         foreach (GameObject bullet in _bullets)
             _bulletMovements.Add(bullet.GetComponent<BulletMovement>());
@@ -99,7 +94,7 @@ public class PlayerShoot : MonoBehaviour
             {
                 if (ray.collider != null && ray.collider.TryGetComponent(out NpcHealthSystem npc))
                 {
-                    npc.OnNormalShot_TakeDamage(_bulletDamage);
+                    npc.OnNormalShot_TakeDamage(_data.damage);
                     Debug.Log("Hit an NPC");
                 }
                 else
@@ -116,7 +111,7 @@ public class PlayerShoot : MonoBehaviour
             if (!_bullets[i].activeInHierarchy)
             {
                 _bullets[i].SetActive(true);
-                _bulletMovements[i].Shoot(_shootingPos, _bulletDistance, _bulletHeight, _bulletDuration, gameObject);
+                _bulletMovements[i].Shoot(_shootingPos, _data.travelDistance, _data.travelHeight, _data.travelDuration, gameObject);
                 OnPlayerSecondShoot?.Invoke();
                 return;
             }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5b8a12b57eb574daf4ff8fddb7f038, type: 3}
+  m_Name: Mine
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
+  damage: 10
+  spawnCount: 25
+  prefab: {fileID: 5935157435752104870, guid: 9f41d372a2c92b64db6e2c37f5e27110, type: 3}
+  travelDistance: 0
+  travelHeight: 0
+  travelDuration: 0
