@@ -19,7 +19,7 @@ public class NpcHealthSystem : MonoBehaviour
 
     private void Start()
     {
-        _life = _data.life * ((_data.level / 10) + 1);
+        _life = _data.life;
     }
 
     private void TakeDamage(int damage)

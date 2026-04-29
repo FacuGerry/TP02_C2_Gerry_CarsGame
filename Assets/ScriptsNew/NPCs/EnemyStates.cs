@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public abstract partial class EnemyStates 
 {
@@ -7,17 +6,15 @@ public abstract partial class EnemyStates
     protected Animator _anim;
     protected Rigidbody _rb;
     protected NpcController _patrol;
-    protected NavMeshAgent _agent;
     protected GameObject _player;
 
     protected static readonly int _state = Animator.StringToHash("State");
 
-    public virtual void Initialize(Animator animator, Rigidbody rigidbody, NpcController npcPatrol, NavMeshAgent agent, GameObject player)
+    public virtual void Initialize(Animator animator, Rigidbody rigidbody, NpcController npcPatrol, GameObject player)
     {
         _anim = animator;
         _rb = rigidbody;
         _patrol = npcPatrol;
-        _agent = agent;
         _player = player;
     }
 

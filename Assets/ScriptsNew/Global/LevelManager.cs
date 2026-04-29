@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private string _sceneToLoad = "Gameplay";
     [SerializeField] private List<NpcController> _npcList = new List<NpcController>();
 
-    public int enemies = 0;
+    private int _enemies = 0;
 
     private IEnumerator _corroutineCreating;
     private void Start()
@@ -41,13 +41,13 @@ public class LevelManager : MonoBehaviour
     {
         int numberOfEnemies = Random.Range(_gameData.minEnemies, (_gameData.maxEnemies + 1));
 
-        while (enemies < numberOfEnemies)
+        while (_enemies < numberOfEnemies)
         {
             int randomEnemy = Random.Range(0, _npcList.Count);
             if (!_npcList[randomEnemy].isEnemy)
             {
                 _npcList[randomEnemy].isEnemy = true;
-                enemies++;
+                _enemies++;
             }
             yield return null;
         }
@@ -57,22 +57,19 @@ public class LevelManager : MonoBehaviour
     private void OnNpcDie_CheckForWin(bool isEnemy)
     {
         if (isEnemy)
-            enemies--;
+            _enemies--;
 
-        if (enemies <= 0)
+        if (_enemies <= 0)
             BuffEnemiesAndReload();
     }
 
     private void BuffEnemiesAndReload()
     {
-        _npcData.level++;
-
         _gameData.minEnemies++;
-        _gameData.maxEnemies++;
-
         if (_gameData.minEnemies > _npcList.Count)
             _gameData.minEnemies = _npcList.Count;
 
+        _gameData.maxEnemies++;
         if (_gameData.maxEnemies > _npcList.Count)
             _gameData.maxEnemies = _npcList.Count;
 

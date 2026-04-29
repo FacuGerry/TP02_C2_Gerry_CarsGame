@@ -4,11 +4,11 @@ using UnityEngine;
 public class Bullets : MonoBehaviour
 {
     public static Bullets instance;
-    public List<GameObject> pooledObjects = new List<GameObject>();
-    [SerializeField] private GameObject _objectToPool;
-    [SerializeField] private int _amountToPool;
+    [SerializeField] private ObjectDataSO _data;
+    [SerializeField] private GameObject _parent;
 
-    private List<Rigidbody> _pooledRigidbodies = new List<Rigidbody>();
+    private ObjectPooler _pool;
+    private List<GameObject> _pooledObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -19,41 +19,22 @@ public class Bullets : MonoBehaviour
         }
 
         instance = this;
+
+        _pool = GetComponent<ObjectPooler>();
     }
 
     private void Start()
     {
-        GameObject tmp;
-        for (int i = 0; i < _amountToPool; i++)
-        {
-            tmp = Instantiate(_objectToPool);
-            tmp.transform.parent = gameObject.transform;
-            tmp.SetActive(false);
-
-            pooledObjects.Add(tmp);
-            _pooledRigidbodies.Add(tmp.GetComponent<Rigidbody>());
-        }
+        _pool.CreatePool(_data.prefab, _parent, _data.spawnCount, _pooledObjects, false);
     }
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < _amountToPool; i++)
+        for (int i = 0; i < _data.spawnCount; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!_pooledObjects[i].activeInHierarchy)
             {
-                return pooledObjects[i];
-            }
-        }
-        return null;
-    }
-
-    public Rigidbody GetRigidbody(GameObject bullet)
-    {
-        for (int i = 0; i < _amountToPool; i++)
-        {
-            if (bullet == pooledObjects[i])
-            {
-                return _pooledRigidbodies[i];
+                return _pooledObjects[i];
             }
         }
         return null;

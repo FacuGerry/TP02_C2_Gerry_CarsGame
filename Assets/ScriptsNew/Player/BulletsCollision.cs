@@ -15,7 +15,7 @@ public class BuleltsCollision : MonoBehaviour
         else
         {
             if (collision.gameObject.TryGetComponent(out HealthSystem player))
-                player.TakeDamage(_data.shootingDamage + _data.level);
+                player.TakeDamage(_data.shootingDamage);
         }
 
         gameObject.SetActive(false);

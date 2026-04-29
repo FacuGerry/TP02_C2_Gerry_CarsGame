@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a5b8a12b57eb574daf4ff8fddb7f038, type: 3}
-  m_Name: Bullet
+  m_Name: BulletPlayer
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
   damage: 5
   spawnCount: 15

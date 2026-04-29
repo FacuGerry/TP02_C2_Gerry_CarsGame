@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb07516e5d6a140a9c8e6f650d19bf, type: 3}
   m_Name: NpcData
   m_EditorClassIdentifier: Assembly-CSharp::StatsDataSO
-  level: 0
   life: 0
-  speed: 0
-  movementSpeedHor: 0
-  movementSpeedVer: 0
-  maxSpeed: 0
-  distanceToShoot: 0
-  shootingSpeed: 0
-  shootingDamage: 0
+  distanceToShoot: 50
+  shootingSpeed: 4
+  shootingDamage: 15
