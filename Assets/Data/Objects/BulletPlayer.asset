@@ -15,6 +15,6 @@ MonoBehaviour:
   damage: 5
   spawnCount: 15
   prefab: {fileID: 6306378854264674115, guid: 07b9ef60e8c45de49908999ef91173e3, type: 3}
-  travelDistance: 20
-  travelHeight: 10
+  travelDistance: 30
+  travelHeight: 30
   travelDuration: 2

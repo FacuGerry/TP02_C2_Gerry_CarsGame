@@ -1773,7 +1773,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5759333929599903610, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1625548667}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 788892481667185197, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1935085274}
   m_SourcePrefab: {fileID: 100100000, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
 --- !u!1001 &378774074
 PrefabInstance:
@@ -2120,7 +2123,7 @@ MonoBehaviour:
   _anim: {fileID: 1693016479}
   _data: {fileID: 11400000, guid: 0edf1dc6a0dd2cb4d943f56ce91f2377, type: 2}
   _bulletShootPos: {fileID: 643842318}
-  isEnemy: 0
+  isEnemy: 1
 --- !u!114 &518287124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5492,6 +5495,11 @@ MonoBehaviour:
   _angleFirstPerson: 0
   _angleThirdPerson: 15
   _car: {fileID: 219614989}
+--- !u!1 &988026408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 788892481667185197, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
+  m_PrefabInstance: {fileID: 352772150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &996523631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5663,7 +5671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2993693109447055380, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2993693109447055380, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6766,6 +6774,7 @@ GameObject:
   - component: {fileID: 1180552734}
   - component: {fileID: 1180552736}
   - component: {fileID: 1180552737}
+  - component: {fileID: 1180552738}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6826,6 +6835,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullets
   _data: {fileID: 11400000, guid: f7c7044689df5684186ede91946e5120, type: 2}
   _parent: {fileID: 48243200}
+--- !u!114 &1180552738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180552733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbdd599afe846840aeca5707b4ab1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreController
+  _pointsForEnemy: 100
+  _pointsForCitizen: 50
+  _data: {fileID: 11400000, guid: 367864518974e7544af9e92dc3f64c7e, type: 2}
 --- !u!1 &1184363746
 GameObject:
   m_ObjectHideFlags: 0
@@ -10023,6 +10047,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5759333929599903610, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
   m_PrefabInstance: {fileID: 352772150}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1935085274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988026408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7259e5f42f8245640887ec959c81fa67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiScore
+  _text: {fileID: 2037824652}
 --- !u!1001 &1964736762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10614,6 +10651,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a13602f99a3efef41b927fb1a4b913d6, type: 3}
+--- !u!114 &2037824652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5085263755502386255, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
+  m_PrefabInstance: {fileID: 1002379095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &2053182713
 GameObject:
   m_ObjectHideFlags: 0
@@ -10624,7 +10672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2053182714}
   m_Layer: 0
-  m_Name: ----- INSTANCES -----
+  m_Name: ----- POOLS -----
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

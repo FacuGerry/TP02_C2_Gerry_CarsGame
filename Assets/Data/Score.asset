@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61eb07516e5d6a140a9c8e6f650d19bf, type: 3}
-  m_Name: NpcData
-  m_EditorClassIdentifier: Assembly-CSharp::StatsDataSO
-  life: 0
-  distanceToShoot: 20
-  shootingSpeed: 4
-  shootingDamage: 15
+  m_Script: {fileID: 11500000, guid: 0fc17c606de352f48a296cbb3191071c, type: 3}
+  m_Name: Score
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreSO
+  score: 0
+  maxScore: 99999999
