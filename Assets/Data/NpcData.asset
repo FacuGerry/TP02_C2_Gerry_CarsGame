@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb07516e5d6a140a9c8e6f650d19bf, type: 3}
   m_Name: NpcData
   m_EditorClassIdentifier: Assembly-CSharp::StatsDataSO
-  life: 0
+  life: 50
   distanceToShoot: 20
   shootingSpeed: 4
   shootingDamage: 15

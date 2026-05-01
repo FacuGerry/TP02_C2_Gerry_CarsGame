@@ -76,24 +76,42 @@ public class NpcController : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private IEnumerator Shooting()
+    private IEnumerator Shooting(Transform startPos, float distance, float height, float duration, GameObject player)
     {
         while (_isShooting)
         {
             GameObject bullet = Bullets.instance.GetPooledObject();
-            if (bullet != null)
+            bullet.SetActive(true);
+            bullet.transform.position = startPos.position;
+
+            float speed = distance / duration;
+            Vector3 direction = (player.transform.position - startPos.position).normalized;
+
+            float time = 0f;
+            while (time < duration)
             {
-                bullet.transform.position = _bulletShootPos.position;
-                bullet.SetActive(true);
+                bullet.transform.position += direction * speed * Time.deltaTime;
 
-                Vector3 bulletDirection = (_player.transform.position - bullet.transform.position).normalized;
+                float t = time / duration;
+                float yOffset = height * t * (1f - t);
 
-                Debug.Log("Enemy shot a bullet to (" + bulletDirection.x + ", " + bulletDirection.y + ", " + bulletDirection.z + ")");
+                Vector3 pos = bullet.transform.position;
+                pos.y = startPos.position.y + yOffset;
+
+                bullet.transform.position = pos;
+
+                if (pos.y <= 0f)
+                    yield break;
+
+                time += Time.deltaTime;
+                yield return null;
             }
+
+            bullet.SetActive(false);
             OnNpcShoot?.Invoke();
             yield return new WaitForSeconds(_shootingSpeed);
+            yield return null;
         }
-        yield return null;
     }
 
     public void EnableShooting(bool isShooting)
@@ -105,7 +123,7 @@ public class NpcController : MonoBehaviour
             {
                 _isShooting = true;
 
-                _corroutineShoot = Shooting();
+                _corroutineShoot = Shooting(_bulletShootPos, _data.distanceToShoot, 4f, _shootingSpeed, _player);
                 StartCoroutine(_corroutineShoot);
             }
         }

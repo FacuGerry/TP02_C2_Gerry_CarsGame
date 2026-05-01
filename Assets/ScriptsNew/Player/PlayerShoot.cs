@@ -26,12 +26,16 @@ public class PlayerShoot : MonoBehaviour
     private bool _isPaused = false;
     private IEnumerator _corroutineShoot;
 
+    private Rigidbody _rb;
+
     private void Awake()
     {
         _pool.CreatePool(_data.prefab, _bulletsParent, _data.spawnCount, _bullets, false);
 
         foreach (GameObject bullet in _bullets)
             _bulletMovements.Add(bullet.GetComponent<BulletMovement>());
+
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -111,7 +115,7 @@ public class PlayerShoot : MonoBehaviour
             if (!_bullets[i].activeInHierarchy)
             {
                 _bullets[i].SetActive(true);
-                _bulletMovements[i].Shoot(_shootingPos, _data.travelDistance, _data.travelHeight, _data.travelDuration, gameObject);
+                _bulletMovements[i].Shoot(_shootingPos, _data.travelDistance, _data.travelHeight, _data.travelDuration, gameObject, _rb.linearVelocity);
                 OnPlayerSecondShoot?.Invoke();
                 return;
             }

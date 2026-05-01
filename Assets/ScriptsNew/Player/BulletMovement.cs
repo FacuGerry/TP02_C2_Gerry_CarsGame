@@ -10,11 +10,15 @@ public class BulletMovement : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private IEnumerator StartMoving(Transform startPos, float distance, float height, float duration, GameObject player)
+    private IEnumerator StartMoving(Transform startPos, float distance, float height, float duration, GameObject player, Vector3 V0)
     {
         transform.position = startPos.position;
 
+        float extraSpeed = Mathf.Max(0f, Vector3.Dot(V0, startPos.forward));
+
+        distance += (extraSpeed * distance) * 0.25f;
         float speed = distance / duration;
+
         Vector3 direction = startPos.forward;
 
         float time = 0f;
@@ -40,12 +44,12 @@ public class BulletMovement : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Shoot(Transform start, float distance, float height, float duration, GameObject player)
+    public void Shoot(Transform start, float distance, float height, float duration, GameObject player, Vector3 V0)
     {
         if (_corroutineMoving != null)
             StopCoroutine(_corroutineMoving);
 
-        _corroutineMoving = StartMoving(start, distance, height, duration, player);
+        _corroutineMoving = StartMoving(start, distance, height, duration, player, V0);
         StartCoroutine(_corroutineMoving);
     }
 }

@@ -9,12 +9,14 @@ public class BuleltsCollision : MonoBehaviour
     {
         if (_isPlayerBullet)
         {
-            if (collision.gameObject.TryGetComponent(out NpcHealthSystem npc))
+            NpcHealthSystem npc = collision.gameObject.GetComponentInParent<NpcHealthSystem>();
+            if (npc != null)
                 npc.OnBulletShot_TakeDamage(_data.shootingDamage);
         }
         else
         {
-            if (collision.gameObject.TryGetComponent(out HealthSystem player))
+            HealthSystem player = collision.gameObject.GetComponentInParent<HealthSystem>();
+            if (player != null)
                 player.TakeDamage(_data.shootingDamage);
         }
 
