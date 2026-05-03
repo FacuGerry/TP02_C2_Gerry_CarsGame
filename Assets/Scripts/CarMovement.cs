@@ -139,4 +139,9 @@ public class CarMovement : MonoBehaviour
         _canMove = false;
         _accelerationForce = 0f;
     }
+
+    public Vector3 GetSpeed()
+    {
+        return _rb.linearVelocity;
+    }
 }

@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4cf7908cf4cd094c8e9fbacb123b351, type: 3}
-  m_Name: CarSettings
+  m_Name: Van_1
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettingsSO
-  maxSpeed: 1000000
+  maxSpeed: 200
   weight: 1500
-  horsePower: 750
-  brakePower: 375
-  steeringPower: 30
-  timeToResetRotation: 5
-  restartCar: 114
-  changePOV: 102
-  maxDurability: 50
+  horsePower: 600
+  brakePower: 350
+  steeringPower: 40
+  timeToResetRotation: 7
+  maxDurability: 150
   durabilityToCharge: 1
-  maxGas: 50
+  maxGas: 80
   gasUsage: 5
   gasToCharge: 0.1

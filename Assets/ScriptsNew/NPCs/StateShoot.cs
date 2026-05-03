@@ -17,10 +17,6 @@ public class StateShoot : EnemyStates
     public override void OnUpdate()
     {
         _patrol.EnableShooting(true);
-
-        //Quaternion lookAt = Quaternion.LookRotation(_player.transform.position - _patrol.transform.position);
-        //Quaternion correction = Quaternion.Euler(0, 45, 0);
-        //_patrol.transform.rotation = lookAt * correction;
     }
 
     public override void OnExit()

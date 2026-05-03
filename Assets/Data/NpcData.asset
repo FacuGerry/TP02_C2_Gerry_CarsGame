@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: NpcData
   m_EditorClassIdentifier: Assembly-CSharp::StatsDataSO
   life: 50
-  distanceToShoot: 20
-  shootingSpeed: 4
+  distanceToShoot: 15
+  heightToShoot: 4
+  shootingSpeed: 2
+  bulletSpeed: 1
   shootingDamage: 15

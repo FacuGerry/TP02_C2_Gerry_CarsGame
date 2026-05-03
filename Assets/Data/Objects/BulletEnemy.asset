@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
   damage: 10
   spawnCount: 25
-  prefab: {fileID: 6306378854264674115, guid: 07b9ef60e8c45de49908999ef91173e3, type: 3}
+  prefab: {fileID: 6306378854264674115, guid: 43cf687ed679e894eae6d3b90edd1bc5, type: 3}
   travelDistance: 20
   travelHeight: 10
   travelDuration: 2

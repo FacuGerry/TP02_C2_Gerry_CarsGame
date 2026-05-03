@@ -9,6 +9,8 @@ public class StatsDataSO : ScriptableObject
 
     [Header("Attacking")]
     public float distanceToShoot;
+    public float heightToShoot;
     public float shootingSpeed;
+    public float bulletSpeed;
     public int shootingDamage;
 }
