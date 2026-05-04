@@ -1,44 +1,54 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
-    public static event Action<bool> OnPause;
+    public static PauseGame Instance;
+    public event Action<bool> OnChangePause;
+
     [SerializeField] private KeyBindingsSO _keys;
-    private bool _isPaused = false;
+    [SerializeField] private string _mainMenuScene = "MainMenu";
+    public bool isPaused { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
-        _isPaused = false;
+        isPaused = false;
         Time.timeScale = 1.0f;
-        OnPause?.Invoke(_isPaused);
-    }
-
-    private void OnEnable()
-    {
-        UiPauseMenu.OnBackClicked += OnBackClicked_Unpause;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(_keys.pause) || Input.GetKeyDown(_keys.pause2) || Input.GetKeyDown(_keys.pause3))
+        if (SceneManager.GetActiveScene().ToString() != _mainMenuScene &&
+           (Input.GetKeyDown(_keys.pause) || Input.GetKeyDown(_keys.pause2) || Input.GetKeyDown(_keys.pause3)))
             ChangePause();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        UiPauseMenu.OnBackClicked += OnBackClicked_Unpause;
+        if (Instance == this)
+            Instance = null;
     }
 
-    private void ChangePause()
+    public void ChangePause()
     {
-        _isPaused = !_isPaused;
-        OnPause?.Invoke(_isPaused);
-        Time.timeScale = _isPaused ? 0.0f : 1.0f;
-    }
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0.0f : 1.0f;
+        OnChangePause?.Invoke(isPaused);
 
-    private void OnBackClicked_Unpause()
-    {
-        ChangePause();
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isPaused;
     }
 }

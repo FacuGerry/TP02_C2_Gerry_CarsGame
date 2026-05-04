@@ -15,7 +15,6 @@ public class PlayerShoot : MonoBehaviour
     private bool _isShooting = false;
     private bool _startedShooting = false;
 
-    private bool _isPaused = false;
     private IEnumerator _corroutineShoot;
 
     private Rigidbody _rb;
@@ -25,14 +24,9 @@ public class PlayerShoot : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
-    {
-        PauseGame.OnPause += OnPause_PauseGame;
-    }
-
     private void Update()
     {
-        if (!_isPaused)
+        if (!PauseGame.Instance.isPaused)
         {
             if (Input.GetKey(_keys.shoot))
                 _isShooting = true;
@@ -65,11 +59,6 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        PauseGame.OnPause -= OnPause_PauseGame;
-    }
-
     private void OnDestroy()
     {
         StopAllCoroutines();
@@ -80,8 +69,7 @@ public class PlayerShoot : MonoBehaviour
         while (_isShooting)
         {
             SfxManager.Instance.OnPlayerShoot_PlayClip();
-            RaycastHit ray;
-            if (Physics.Raycast(_shootingPos.position, transform.forward, out ray, _normalBulletDistance))
+            if (Physics.Raycast(_shootingPos.position, transform.forward, out RaycastHit ray, _normalBulletDistance))
             {
                 if (ray.collider != null && ray.collider.TryGetComponent(out NpcHealthSystem npc))
                 {
@@ -108,10 +96,5 @@ public class PlayerShoot : MonoBehaviour
     private void ShowCheat()
     {
         _cheatLine.SetActive(!_cheatLine.activeInHierarchy);
-    }
-
-    private void OnPause_PauseGame(bool isPaused)
-    {
-        _isPaused = isPaused;
     }
 }

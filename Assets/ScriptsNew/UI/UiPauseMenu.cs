@@ -5,33 +5,34 @@ using UnityEngine.UI;
 
 public class UiPauseMenu : MonoBehaviour
 {
-    public static event Action OnBackClicked;
-
-    [SerializeField] private CanvasGroup _canvas;
+    private CanvasGroup _canvas;
     [SerializeField] private Button _btnBack;
     [SerializeField] private Button _btnMainMenu;
     [SerializeField] private string _sceneToLoad;
+
+    private void Awake()
+    {
+        _canvas = GetComponent<CanvasGroup>();
+    }
 
     private void Start()
     {
         _btnBack.onClick.AddListener(BackClicked);
         _btnMainMenu.onClick.AddListener(MainMenuClicked);
-    }
 
-    private void OnEnable()
-    {
-        PauseGame.OnPause += OnPause_ShowSettings;
-    }
+        EnableCanvas(false);
 
-    private void OnDisable()
-    {
-        PauseGame.OnPause -= OnPause_ShowSettings;
+        if (PauseGame.Instance != null)
+            PauseGame.Instance.OnChangePause += OnPause_ShowSettings;
     }
 
     private void OnDestroy()
     {
         _btnBack.onClick.RemoveAllListeners();
         _btnMainMenu.onClick.RemoveAllListeners();
+
+        if (PauseGame.Instance != null)
+            PauseGame.Instance.OnChangePause -= OnPause_ShowSettings;
     }
 
     private void EnableCanvas(bool isOn)
@@ -43,7 +44,8 @@ public class UiPauseMenu : MonoBehaviour
 
     private void BackClicked()
     {
-        OnBackClicked?.Invoke();
+        if (PauseGame.Instance != null)
+            PauseGame.Instance.ChangePause();
     }
 
     private void MainMenuClicked()

@@ -48,21 +48,24 @@ public class CarMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_canMove)
-            _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;
+        if (!PauseGame.Instance.isPaused)
+        {
+            if (_canMove)
+                _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;
 
-        _brakeForce = Input.GetAxis("Brake") * _data.brakePower;
-        _steeringForce = Input.GetAxis("Horizontal") * _data.steeringPower;
+            _brakeForce = Input.GetAxis("Brake") * _data.brakePower;
+            _steeringForce = Input.GetAxis("Horizontal") * _data.steeringPower;
 
-        if (Input.GetKeyDown(_keys.restartCar))
-            RestartCar();
+            if (Input.GetKeyDown(_keys.restartCar))
+                RestartCar();
 
-        SyncVisuals(_wheelFR, _wheelVisualFR);
-        SyncVisuals(_wheelFL, _wheelVisualFL);
-        SyncVisuals(_wheelRR, _wheelVisualRR);
-        SyncVisuals(_wheelRL, _wheelVisualRL);
+            SyncVisuals(_wheelFR, _wheelVisualFR);
+            SyncVisuals(_wheelFL, _wheelVisualFL);
+            SyncVisuals(_wheelRR, _wheelVisualRR);
+            SyncVisuals(_wheelRL, _wheelVisualRL);
 
-        OnSpeedChange?.Invoke(_rb.linearVelocity.magnitude * 3.6f);
+            OnSpeedChange?.Invoke(_rb.linearVelocity.magnitude * 3.6f);
+        }
     }
 
     private void FixedUpdate()

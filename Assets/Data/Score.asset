@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Score
   m_EditorClassIdentifier: Assembly-CSharp::ScoreSO
   score: 0
-  maxScore: 99999999
+  maxScore: 9999

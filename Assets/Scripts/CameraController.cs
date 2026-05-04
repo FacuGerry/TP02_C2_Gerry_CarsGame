@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Keys")]
     [SerializeField] private KeyBindingsSO _keys;
+
+    [Header("Positions")]
     [SerializeField] private Transform _firstPerson;
     [SerializeField] private Transform _thirdPerson;
+
+    [Header("Target")]
     [SerializeField] private Transform _car;
 
     private float _yaw;
@@ -15,16 +20,18 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         FollowCar();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(_keys.changePOV))
-            _isFirstPerson = !_isFirstPerson;
+        if (!PauseGame.Instance.isPaused)
+        {
+            if (Input.GetKeyDown(_keys.changePOV))
+                _isFirstPerson = !_isFirstPerson;
 
-        FollowCar();
-        LookAround();
+            FollowCar();
+            LookAround();
+        }
     }
 
     private void FollowCar()

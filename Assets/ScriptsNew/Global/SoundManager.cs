@@ -46,7 +46,7 @@ public class SoundManager : MonoBehaviour
     public void OnSFXChanged(float vol)
     {
         _data.sfxVol = vol;
-        _data.mixer.SetFloat("SFXVol", Mathf.Log10(vol) * 20);
+        _data.mixer.SetFloat("SfxVol", Mathf.Log10(vol) * 20);
     }
 
 }

@@ -11,6 +11,10 @@ public class NpcController : MonoBehaviour
     [Header("Bullets")]
     [SerializeField] private Transform _bulletShootPos;
 
+    [Header("Pausing game")]
+    [SerializeField] private PauseGame _pause;
+    private bool _isPaused = false;
+
     private List<EnemyStates> _states = new List<EnemyStates>();
     private EnemyStates currentState;
     private Rigidbody _rb;
@@ -22,7 +26,6 @@ public class NpcController : MonoBehaviour
     private float _shootingSpeed;
 
     private IEnumerator _corroutineShoot;
-    private bool _isPaused = false;
 
     private void Awake()
     {
@@ -46,26 +49,15 @@ public class NpcController : MonoBehaviour
         _shootingSpeed = _data.shootingSpeed;
     }
 
-    private void OnEnable()
-    {
-        PauseGame.OnPause += OnPause_PauseGame;
-    }
-
     private void Update()
     {
-        if (!_isPaused)
+        if (!PauseGame.Instance.isPaused)
         {
-            if (currentState != null)
-                currentState.OnUpdate();
+            currentState?.OnUpdate();
 
             if (isEnemy)
                 CheckForPlayer();
         }
-    }
-
-    private void OnDisable()
-    {
-        PauseGame.OnPause -= OnPause_PauseGame;
     }
 
     private void OnDestroy()
