@@ -4,70 +4,82 @@ using UnityEngine;
 
 public class MyPoolManager : MonoBehaviour
 {
-    [SerializeField] private PoolSettingSO _prefabs;
-    private Dictionary<Type, List<IPooleable>> _pooleablesDictionary;
+    public static MyPoolManager Instance;
 
-    private void Start ()
+    [SerializeField] private PoolSettingsSO _prefabs;
+    private Dictionary<Type, List<IPooleable>> _pooleablesDictionary = new Dictionary<Type, List<IPooleable>>();
+
+    private void Awake()
     {
-        //InitializePool();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        InitializePool();
     }
 
-    /*private void InitializePool ()
+    private void OnDestroy()
     {
-        // Recorremos el diccionario de pooleables y creamos 10 de cada uno
-        foreach (KeyValuePair<Type, List<IPooleable>> item in _pooleablesDictionary)
+        if (Instance == this)
+            Instance = null;
+    }
+
+    private void InitializePool()
+    {
+        foreach (PoolSetting pool in _prefabs.poolSettings)
         {
-            MonoBehaviour prefab = FindPrefab(item.Key);
-            if (prefab != null)
-                CreatePool(prefab.gameObject, transform, 10, item.Value);
+            IPooleable pooleable = pool.prefab.GetComponent<IPooleable>();
+
+            Type type = pooleable.GetType();
+
+            if (!_pooleablesDictionary.ContainsKey(type))
+                _pooleablesDictionary[type] = new List<IPooleable>();
+
+            GameObject parent = new GameObject(pool.prefab.ToString());
+            parent.transform.parent = transform;
+            CreatePool(pool.prefab.gameObject, parent.transform, pool.quantity, _pooleablesDictionary[type]);
         }
     }
 
-    public void CreatePool (GameObject prefab, Transform parent, int quantity, List<IPooleable> list)
+    public void CreatePool(GameObject prefab, Transform parent, int quantity, List<IPooleable> list)
     {
         for (int i = 0; i < quantity; i++)
         {
-            GameObject go = Instantiate(prefab);
-            go.transform.parent = parent;
+            GameObject go = Instantiate(prefab, parent);
             IPooleable pooleable = go.GetComponent<IPooleable>();
             pooleable.DeActivate();
             list.Add(pooleable);
         }
     }
 
-    private MonoBehaviour FindPrefab<T> (T component)
+    public T GetInstanceFromPool<T>() where T : MonoBehaviour, IPooleable
     {
-        MonoBehaviour prefab = null;
-        for (int i = 0; i < _prefabs.poolSettings.Count; i++)
+        Type type = typeof(T);
+
+        if (!_pooleablesDictionary.ContainsKey(type))
+            return null;
+
+        List<IPooleable> list = _pooleablesDictionary[type];
+
+        for (int i = 0; i < list.Count; i++)
         {
-            if (_prefabs.poolSettings[i].prefab.GetComponent<T>() != null)
-            {
-                prefab = _prefabs.poolSettings[i].prefab;
-                break;
-            }
+            if (!list[i].IsActive)
+                return list[i] as T;
         }
-
-        return prefab;
-    }*/
-
-    public T GetInstanceFromPool<T> () where T : MonoBehaviour
-    {
-        foreach (KeyValuePair<Type, List<IPooleable>> item in _pooleablesDictionary)
-        {
-            if (typeof(T) == item.Key)
-            {
-                for (int i = 0; i < item.Value.Count; i++)
-                {
-                    if (!item.Value[i].IsActive)
-                    {
-                        return (T)item.Value[i];
-                    }
-                }
-
-                break;
-            }
-        }
-
         return null;
+    }
+
+    public int GetPoolSize<T>() where T : MonoBehaviour, IPooleable
+    {
+        Type type = typeof(T);
+
+        if (!_pooleablesDictionary.ContainsKey(type))
+            return 0;
+
+        return _pooleablesDictionary[type].Count;
     }
 }

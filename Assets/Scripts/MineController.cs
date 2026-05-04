@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class MineController : MonoBehaviour
+public class MineController : MonoBehaviour, IPooleable
 {
     [SerializeField] private ObjectDataSO _data;
     [SerializeField] private LayerMask _targetLayer;
 
+    public bool IsActive { get; set; }
+
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * 5f, Color.red);
-
         RaycastHit ray;
         if (Physics.Raycast(transform.position, transform.up, out ray, 5f, _targetLayer))
         {
@@ -18,9 +18,21 @@ public class MineController : MonoBehaviour
                 if (health != null)
                 {
                     health.TakeDamage(_data.damage);
-                    gameObject.SetActive(false);
+                    DeActivate();
                 }
             }
         }
+    }
+
+    public void Activate()
+    {
+        IsActive = true;
+        gameObject.SetActive(IsActive);
+    }
+
+    public void DeActivate()
+    {
+        IsActive = false;
+        gameObject.SetActive(IsActive);
     }
 }

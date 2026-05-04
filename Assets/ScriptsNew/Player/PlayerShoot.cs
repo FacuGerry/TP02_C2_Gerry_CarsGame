@@ -1,25 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public event Action OnPlayerShoot;
-    public event Action OnPlayerSecondShoot;
-
     [SerializeField] private KeyBindingsSO _keys;
     [SerializeField] private Transform _shootingPos;
     [SerializeField] private float _normalBulletDistance = 100f;
 
     [Header("Second bullet settings")]
-    [SerializeField] private ObjectPooler _pool;
-    [SerializeField] private GameObject _bulletsParent;
     [SerializeField] private ObjectDataSO _data;
     [SerializeField] private GameObject _cheatLine;
 
-    private List<GameObject> _bullets = new List<GameObject>();
-    private List<BulletMovement> _bulletMovements = new List<BulletMovement>();
     private bool _isShooting = false;
     private bool _startedShooting = false;
 
@@ -30,11 +22,6 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        _pool.CreatePool(_data.prefab, _bulletsParent, _data.spawnCount, _bullets, false);
-
-        foreach (GameObject bullet in _bullets)
-            _bulletMovements.Add(bullet.GetComponent<BulletMovement>());
-
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -92,7 +79,7 @@ public class PlayerShoot : MonoBehaviour
     {
         while (_isShooting)
         {
-            OnPlayerShoot?.Invoke();
+            SfxManager.Instance.OnPlayerShoot_PlayClip();
             RaycastHit ray;
             if (Physics.Raycast(_shootingPos.position, transform.forward, out ray, _normalBulletDistance))
             {
@@ -110,16 +97,12 @@ public class PlayerShoot : MonoBehaviour
 
     private void SecondShoot()
     {
-        for (int i = 0; i < _bullets.Count; i++)
-        {
-            if (!_bullets[i].activeInHierarchy)
-            {
-                _bullets[i].SetActive(true);
-                _bulletMovements[i].Shoot(_shootingPos, _data.travelDistance, _data.travelHeight, _data.travelDuration, gameObject, _rb.linearVelocity);
-                OnPlayerSecondShoot?.Invoke();
-                return;
-            }
-        }
+        BulletMovement bullet = MyPoolManager.Instance.GetInstanceFromPool<BulletMovement>();
+        if (bullet == null)
+            return;
+        bullet.Activate();
+        bullet.Shoot(_shootingPos, _data.travelDistance, _data.travelHeight, _data.travelDuration, gameObject, _rb.linearVelocity);
+        SfxManager.Instance.OnPlayerSecondShoot_PlayClip();
     }
 
     private void ShowCheat()

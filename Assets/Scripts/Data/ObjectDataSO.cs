@@ -5,8 +5,6 @@ using UnityEngine;
 public class ObjectDataSO : ScriptableObject
 {
     public int damage;
-    public int spawnCount;
-    public GameObject prefab;
 
     [Header("If object has to move:")]
     public float travelDistance;

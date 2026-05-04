@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CarSettingsSO : ScriptableObject
 {
+    [Header("Car GameObject")]
+    public GameObject prefab;
+
     [Header("Stats")]
     public float maxSpeed;
     public float weight;

@@ -1623,6 +1623,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1935085274}
   m_SourcePrefab: {fileID: 100100000, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
+--- !u!1 &365292599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2475056566463888797, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
+  m_PrefabInstance: {fileID: 7368556218895860983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &378774074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2660,8 +2665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca458e6a56e33d4ab6cd880374da9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnMines
-  _pool: {fileID: 1180552736}
-  _mineParent: {fileID: 144426564}
   _data: {fileID: 11400000, guid: 795178e5260daf2498b32c6059256c16, type: 2}
   _spawnPlaces:
   - {fileID: 4970620350827195263}
@@ -4688,13 +4691,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 3, y: 3, z: 63}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 2, z: 64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4710,8 +4713,6 @@ MonoBehaviour:
   _keys: {fileID: 11400000, guid: 662734b89445471478157f5e038cac01, type: 2}
   _firstPerson: {fileID: 1117510309}
   _thirdPerson: {fileID: 184780780}
-  _angleFirstPerson: 0
-  _angleThirdPerson: 15
   _car: {fileID: 219614989}
 --- !u!1 &988026408 stripped
 GameObject:
@@ -5690,9 +5691,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1180552735}
   - component: {fileID: 1180552734}
-  - component: {fileID: 1180552736}
-  - component: {fileID: 1180552737}
   - component: {fileID: 1180552738}
+  - component: {fileID: 1180552739}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5727,32 +5727,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1180552736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180552733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f47202ca50b8484a859a816f3f53daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectPooler
---- !u!114 &1180552737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180552733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7844e35d135c054eaece2b0d57feb76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bullets
-  _data: {fileID: 11400000, guid: f7c7044689df5684186ede91946e5120, type: 2}
-  _parent: {fileID: 48243200}
 --- !u!114 &1180552738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5768,6 +5742,19 @@ MonoBehaviour:
   _pointsForEnemy: 100
   _pointsForCitizen: 50
   _data: {fileID: 11400000, guid: 367864518974e7544af9e92dc3f64c7e, type: 2}
+--- !u!114 &1180552739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180552733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e21742c6849be4381128117d737742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyPoolManager
+  _prefabs: {fileID: 11400000, guid: c84c2a1fe6c862844a8f176a43c4f400, type: 2}
 --- !u!1001 &1200628705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6924,6 +6911,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a751ccfdf215bdd4d97357c203d21b9c, type: 3}
+--- !u!114 &1577009618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365292599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa49aedad4614f4a88c46f3b3266468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunFollowCamera
+  _camera: {fileID: 963194228}
+  _yOffset: 180
 --- !u!1001 &1581083044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8228,7 +8229,7 @@ PrefabInstance:
     - target: {fileID: 1255786764293222178, guid: 9789af51fca5f2f45ab3d24880aa3ee7, type: 3}
       propertyPath: _pool
       value: 
-      objectReference: {fileID: 1180552736}
+      objectReference: {fileID: 0}
     - target: {fileID: 1255786764293222178, guid: 9789af51fca5f2f45ab3d24880aa3ee7, type: 3}
       propertyPath: _bulletsParent
       value: 
@@ -9832,6 +9833,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1850163559}
     m_Modifications:
+    - target: {fileID: 726880161452431160, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 994763138372467489, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9839,7 +9844,7 @@ PrefabInstance:
     - target: {fileID: 1255786764293222178, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
       propertyPath: _pool
       value: 
-      objectReference: {fileID: 1180552736}
+      objectReference: {fileID: 0}
     - target: {fileID: 1255786764293222178, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
       propertyPath: _bulletsParent
       value: 
@@ -9888,10 +9893,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sedan
       objectReference: {fileID: 0}
-    - target: {fileID: 2123198599053465789, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3572227505958185919, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
       propertyPath: _posMng
       value: 
@@ -9899,7 +9900,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2475056566463888797, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1577009618}
   m_SourcePrefab: {fileID: 100100000, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
 --- !u!1001 &8889409200253059163
 PrefabInstance:

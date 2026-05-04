@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class SfxManager : MonoBehaviour
 {
-    public static SfxManager instance;
-
-    [Header("Events subscribers")]
-    [SerializeField] private HealthSystem _healthSystem;
-    [SerializeField] private PlayerShoot _playerShoot;
+    public static SfxManager Instance;
 
     [Header("Sources")]
     [SerializeField] private AudioSource _sfx;
@@ -29,91 +25,63 @@ public class SfxManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        _healthSystem.OnPlayerDamaged += OnPlayerDamaged_PlayClip;
-        _healthSystem.OnPlayerDie += OnPlayerDie_PlayClip;
-
-        NpcHealthSystem.OnNpcDamaged += OnNpcDamaged_PlayClip;
-        NpcHealthSystem.OnNpcDie += OnNpcDie_PlayClip;
-
-        _playerShoot.OnPlayerShoot += OnPlayerShoot_PlayClip;
-        _playerShoot.OnPlayerSecondShoot += OnPlayerSecondShoot_PlayClip;
-
-        NpcController.OnNpcShoot += OnEnemyShoot_PlayClip;
-
-        UiButtonHoverSFXEvent.OnButtonHover += OnButtonHover_PlayClip;
-        UiButtonHoverSFXEvent.OnButtonClick += OnButtonClick_PlayClip;
+        if (Instance == this)
+            Instance = null;
     }
 
-    private void OnDisable()
-    {
-        _healthSystem.OnPlayerDamaged -= OnPlayerDamaged_PlayClip;
-        _healthSystem.OnPlayerDie -= OnPlayerDie_PlayClip;
-
-        NpcHealthSystem.OnNpcDamaged -= OnNpcDamaged_PlayClip;
-        NpcHealthSystem.OnNpcDie -= OnNpcDie_PlayClip;
-
-        _playerShoot.OnPlayerShoot -= OnPlayerShoot_PlayClip;
-        _playerShoot.OnPlayerSecondShoot -= OnPlayerSecondShoot_PlayClip;
-
-        NpcController.OnNpcShoot -= OnEnemyShoot_PlayClip;
-
-        UiButtonHoverSFXEvent.OnButtonHover -= OnButtonHover_PlayClip;
-        UiButtonHoverSFXEvent.OnButtonClick -= OnButtonClick_PlayClip;
-    }
-
-    private void OnPlayerShoot_PlayClip()
+    public void OnPlayerShoot_PlayClip()
     {
         _sfx.PlayOneShot(_playerShootClip);
     }
 
-    private void OnPlayerSecondShoot_PlayClip()
+    public void OnPlayerSecondShoot_PlayClip()
     {
         _sfx.PlayOneShot(_playerSecondShoot);
     }
 
-    private void OnEnemyShoot_PlayClip()
+    public void OnEnemyShoot_PlayClip()
     {
         _sfx.PlayOneShot(_enemyShoot);
     }
 
-    private void OnPlayerDamaged_PlayClip()
+    public void OnPlayerDamaged_PlayClip()
     {
         _sfx.PlayOneShot(_playerDamaged);
     }
 
-    private void OnPlayerDie_PlayClip()
+    public void OnPlayerDie_PlayClip()
     {
         _sfx.PlayOneShot(_playerDie);
     }
 
-    private void OnNpcDamaged_PlayClip()
+    public void OnNpcDamaged_PlayClip()
     {
         _sfx.PlayOneShot(_enemyDamaged);
     }
 
-    private void OnNpcDie_PlayClip(bool isEnemy)
+    public void OnNpcDie_PlayClip(bool isEnemy)
     {
         _sfx.PlayOneShot(_enemyDie);
     }
 
-    private void OnButtonHover_PlayClip()
+    public void OnButtonHover_PlayClip()
     {
         _ui.PlayOneShot(_btnHover);
     }
 
-    private void OnButtonClick_PlayClip()
+    public void OnButtonClick_PlayClip()
     {
         _ui.PlayOneShot(_btnClick);
     }

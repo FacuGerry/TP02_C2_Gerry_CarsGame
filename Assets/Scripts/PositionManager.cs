@@ -1,11 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PositionManager : MonoBehaviour
 {
+    public static PositionManager Instance;
+
     private Vector3 _previousPosition;
     private Vector3 _currentPosition;
 
     private Vector3 _rotation;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 
     public Vector3 GetPreviousPosition()
     {

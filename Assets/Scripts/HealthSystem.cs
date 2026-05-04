@@ -9,10 +9,15 @@ public class HealthSystem : MonoBehaviour
     public event Action OnPlayerDie;
 
     [SerializeField] private CarSettingsSO _data;
-    [SerializeField] private CollisionController _collisionController;
+    private CollisionController _collisionController;
     private float _durability;
 
     private IEnumerator _coroutineHeal;
+
+    private void Awake()
+    {
+        _collisionController = GetComponent<CollisionController>();
+    }
 
     private void Start()
     {

@@ -1,16 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UiButtonHoverSFXEvent : MonoBehaviour, IPointerEnterHandler
 {
-    public static event Action OnButtonHover;
-    public static event Action OnButtonClick;
-    private UnityEngine.UI.Button _btn;
+    private Button _btn;
 
     private void Awake()
     {
-        _btn = GetComponent<UnityEngine.UI.Button>();
+        _btn = GetComponent<Button>();
     }
 
     private void Start()
@@ -25,11 +23,11 @@ public class UiButtonHoverSFXEvent : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        OnButtonHover?.Invoke();
+        SfxManager.Instance.OnButtonHover_PlayClip();
     }
 
     public void ButtonClicked()
     {
-        OnButtonClick?.Invoke();
+        SfxManager.Instance.OnButtonClick_PlayClip();
     }
 }

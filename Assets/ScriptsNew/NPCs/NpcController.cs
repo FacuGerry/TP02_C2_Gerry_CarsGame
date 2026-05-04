@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    public static event Action OnNpcShoot;
-
     [SerializeField] private GameObject _player;
     [SerializeField] private Animator _anim;
     [SerializeField] private StatsDataSO _data;
@@ -80,8 +77,9 @@ public class NpcController : MonoBehaviour
     {
         while (_isShooting)
         {
-            GameObject bullet = Bullets.instance.GetPooledObject();
-            bullet.SetActive(true);
+            BulletEnemy bullet = MyPoolManager.Instance.GetInstanceFromPool<BulletEnemy>();
+            GameObject go = bullet.gameObject;
+            go.SetActive(true);
 
             Vector3 start = startPos.position;
 
@@ -101,14 +99,16 @@ public class NpcController : MonoBehaviour
                 float yOffset = height * t * 4f * (1f - t);
                 pos.y += yOffset;
 
-                bullet.transform.position = pos;
+                go.transform.position = pos;
 
                 time += Time.deltaTime;
                 yield return null;
             }
 
-            bullet.SetActive(false);
-            OnNpcShoot?.Invoke();
+            go.SetActive(false);
+
+            SfxManager.Instance.OnEnemyShoot_PlayClip();
+
             yield return new WaitForSeconds(_shootingSpeed);
         }
     }

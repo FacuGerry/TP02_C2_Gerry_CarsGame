@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class BulletMovement : MonoBehaviour
+public class BulletMovement : MonoBehaviour, IPooleable
 {
     private IEnumerator _corroutineMoving;
+    public bool IsActive { get; set; }
 
     private void OnDestroy()
     {
@@ -41,7 +42,19 @@ public class BulletMovement : MonoBehaviour
             yield return null;
         }
 
-        gameObject.SetActive(false);
+        DeActivate();
+    }
+
+    public void Activate()
+    {
+        IsActive = true;
+        gameObject.SetActive(IsActive);
+    }
+
+    public void DeActivate()
+    {
+        IsActive = false;
+        gameObject.SetActive(IsActive);
     }
 
     public void Shoot(Transform start, float distance, float height, float duration, GameObject player, Vector3 V0)

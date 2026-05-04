@@ -19,7 +19,6 @@ public class CarMovement : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private CarSettingsSO _data;
-    [SerializeField] private PositionManager _posMng;
     [SerializeField] private KeyBindingsSO _keys;
     private GasSystem _gasSystem;
 
@@ -123,8 +122,8 @@ public class CarMovement : MonoBehaviour
         _wheelFR.steerAngle = 0;
         _wheelFL.steerAngle = 0;
 
-        transform.position = _posMng.GetCurrentPosition();
-        transform.localEulerAngles = _posMng.GetCurrentRotation();
+        transform.position = PositionManager.Instance.GetCurrentPosition();
+        transform.localEulerAngles = PositionManager.Instance.GetCurrentRotation();
     }
 
     private void SyncVisuals(WheelCollider coll, Transform visual)

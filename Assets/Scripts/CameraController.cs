@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private KeyBindingsSO _keys;
     [SerializeField] private Transform _firstPerson;
     [SerializeField] private Transform _thirdPerson;
-    [SerializeField] private float _angleFirstPerson = 0f;
-    [SerializeField] private float _angleThirdPerson = 15f;
     [SerializeField] private Transform _car;
 
     private float _yaw;
@@ -17,7 +14,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        SetRotation();
         FollowCar();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -25,18 +21,10 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(_keys.changePOV))
-        {
             _isFirstPerson = !_isFirstPerson;
-            SetRotation();
-        }
 
         FollowCar();
         LookAround();
-    }
-
-    private void SetRotation()
-    {
-        _pitch = _isFirstPerson ? _angleFirstPerson : _angleThirdPerson;
     }
 
     private void FollowCar()
@@ -53,6 +41,10 @@ public class CameraController : MonoBehaviour
 
         _yaw += mouseX;
 
-        transform.rotation = Quaternion.Euler(_pitch, _car.eulerAngles.y + _yaw, 0f);
+        float mouseY = -Input.GetAxis("Mouse Y");
+
+        _pitch += mouseY;
+
+        transform.rotation = Quaternion.Euler(_car.eulerAngles.x + _pitch, _car.eulerAngles.y + _yaw, 0f);
     }
 }

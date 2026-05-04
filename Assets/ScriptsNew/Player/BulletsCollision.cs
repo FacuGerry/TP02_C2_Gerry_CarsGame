@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuleltsCollision : MonoBehaviour
+public class BulletsCollision : MonoBehaviour
 {
     [SerializeField] private StatsDataSO _data;
     [SerializeField] private bool _isPlayerBullet;

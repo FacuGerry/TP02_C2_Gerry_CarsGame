@@ -4,25 +4,20 @@ using UnityEngine;
 public class SpawnMines : MonoBehaviour
 {
     [Header("Pool settings")]
-    [SerializeField] private ObjectPooler _pool;
-    [SerializeField] private GameObject _mineParent;
     [SerializeField] private ObjectDataSO _data;
-    private List<GameObject> _mines = new List<GameObject>();
 
     [Header("Mine settings")]
-    [SerializeField] private List<BoxCollider> _spawnPlaces = new List<BoxCollider>();
-
-    private void Awake()
-    {
-        _pool.CreatePool(_data.prefab, _mineParent, _data.spawnCount, _mines, true);
-    }
+    [SerializeField] private BoxCollider[] _spawnPlaces = new BoxCollider[0];
 
     private void Start()
     {
-        foreach (GameObject mine in _mines)
+        int size = MyPoolManager.Instance.GetPoolSize<MineController>();
+
+        for (int j = 0; j < size; j++)
         {
+            MineController mine = MyPoolManager.Instance.GetInstanceFromPool<MineController>();
             BoxCollider coll = null;
-            for (int i = 0; i < _spawnPlaces.Count; i++)
+            for (int i = 0; i < _spawnPlaces.Length; i++)
             {
                 float rand = Random.value;
                 if (rand >= 0.5f)
@@ -40,6 +35,7 @@ public class SpawnMines : MonoBehaviour
             Vector3 pos = bounds.center + randomOffset;
 
             mine.transform.position = pos;
+            mine.Activate();
         }
     }
 }
