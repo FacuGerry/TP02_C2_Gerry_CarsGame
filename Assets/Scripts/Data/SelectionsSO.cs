@@ -9,8 +9,5 @@ public class SelectionsSO : ScriptableObject
 
     public GameObject spawnedCar;
 
-    public void ResetCar()
-    {
-        spawnedCar = null;
-    }
+    public void ResetCar() => spawnedCar = null;
 }

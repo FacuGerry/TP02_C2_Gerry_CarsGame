@@ -123,7 +123,7 @@ public class SelectionScreen : MonoBehaviour
         Debug.Log("track changed");
     }
 
-    // SET EVERYTHING
+    // SET SELECTIONS
 
     private void SetSelections()
     {
