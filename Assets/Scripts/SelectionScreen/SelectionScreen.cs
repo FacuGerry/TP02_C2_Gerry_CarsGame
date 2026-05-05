@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SelectionScreen : MonoBehaviour
 {
     [Header("Cars")]
+    [SerializeField] private GameObject _carParent;
     [SerializeField] private SelectionsSO _selection;
     [SerializeField] private CarSettingsSO[] _carsList = new CarSettingsSO[0];
 
@@ -14,6 +15,7 @@ public class SelectionScreen : MonoBehaviour
     [SerializeField] private UiSelectionScreenButtons _uiSelectionScreenButtons;
 
     [Header("Tracks")]
+    [SerializeField] private GameObject _trackParent;
     [SerializeField] private TrackSettingsSO[] _tracksList = new TrackSettingsSO[0];
 
     private List<GameObject> _carsVisuals = new List<GameObject>();
@@ -24,17 +26,23 @@ public class SelectionScreen : MonoBehaviour
 
     private void Start()
     {
-        GameObject carParent = new GameObject("Car parent");
-        GameObject trackParent = new GameObject("Track parent");
-
         _indexCar = 0;
         _indexTracks = 0;
    
         foreach (CarSettingsSO car in _carsList)
-            _carsVisuals.Add(Instantiate(car.visual, carParent.transform));
+            _carsVisuals.Add(Instantiate(car.visual, _carParent.transform));
         
         foreach (TrackSettingsSO track in _tracksList)
-            _trackVisuals.Add(Instantiate(track.visual, trackParent.transform));
+            _trackVisuals.Add(Instantiate(track.visual, _trackParent.transform));
+
+        foreach (GameObject car in _carsVisuals)
+            car.SetActive(false);
+
+        foreach (GameObject track in _trackVisuals)
+            track.SetActive(false);
+
+        _carsVisuals[_indexCar].SetActive(true);
+        _trackVisuals[_indexTracks].SetActive(true);
     }
 
     private void OnEnable()
@@ -70,6 +78,8 @@ public class SelectionScreen : MonoBehaviour
 
     private void ChangeCar(bool goRight)
     {
+        Quaternion rotation = _carsVisuals[_indexCar].transform.rotation;
+
         _carsVisuals[_indexCar].SetActive(false);
 
         if (goRight)
@@ -86,6 +96,7 @@ public class SelectionScreen : MonoBehaviour
         }
 
         _carsVisuals[_indexCar].SetActive(true);
+        _carsVisuals[_indexCar].transform.rotation = rotation;
         Debug.Log("car changed");
     }
 
