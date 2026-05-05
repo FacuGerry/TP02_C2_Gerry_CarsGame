@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67273d588e529b42a0f5b7031c716fe, type: 3}
   m_Name: TrackSettings_03
   m_EditorClassIdentifier: Assembly-CSharp::TrackSettingsSO
-  visual: {fileID: 0}
+  visual: {fileID: 4278497275315642267, guid: 0bd2e5759f91d0a4f9e5266408062a9a, type: 3}
   sceneName: Track03

@@ -990,6 +990,8 @@ MonoBehaviour:
   _trackParent: {fileID: 477974927}
   _tracksList:
   - {fileID: 11400000, guid: 7da56cf801497f449ae41f8f87bc249c, type: 2}
+  - {fileID: 11400000, guid: 356f0d7577f3c744fabdcfab7a255361, type: 2}
+  - {fileID: 11400000, guid: 4902cf6299769684980b96ca37796bf1, type: 2}
 --- !u!4 &869809617
 Transform:
   m_ObjectHideFlags: 0
