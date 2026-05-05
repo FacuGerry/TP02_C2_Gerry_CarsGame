@@ -4,7 +4,13 @@ using UnityEngine;
 public class UiGasUsage : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private GasSystem _gasSystem;
+    [SerializeField] private SelectionsSO _selection;
+    private GasSystem _gasSystem;
+
+    private void Awake()
+    {
+        _gasSystem = _selection.spawnedCar.GetComponent<GasSystem>();
+    }
 
     private void OnEnable()
     {

@@ -7,7 +7,13 @@ public class UiSpeedometer : MonoBehaviour
     [SerializeField] private float _maxSpeed = 240f;
     [SerializeField] private float _minSpeedRotation = 180f;
     [SerializeField] private float _maxSpeedRotation = -90f;
-    [SerializeField] private CarMovement _carMovement;
+    [SerializeField] private SelectionsSO _selection;
+    private CarMovement _carMovement;
+
+    private void Awake()
+    {
+        _carMovement = _selection.spawnedCar.GetComponent<CarMovement>();
+    }
 
     private void OnEnable()
     {

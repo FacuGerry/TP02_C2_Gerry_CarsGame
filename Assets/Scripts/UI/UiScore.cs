@@ -4,15 +4,21 @@ using UnityEngine;
 public class UiScore : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
+    private ScoreController _controller;
+
+    private void Awake()
+    {
+        _controller = MyPoolManager.Instance.gameObject.GetComponent<ScoreController>();
+    }
 
     private void OnEnable()
     {
-        ScoreController.OnScoreUpdated += OnScoreUpdated_UpdateScore;
+        _controller.OnScoreUpdated += OnScoreUpdated_UpdateScore;
     }
 
     private void OnDisable()
     {
-        ScoreController.OnScoreUpdated -= OnScoreUpdated_UpdateScore;
+        _controller.OnScoreUpdated -= OnScoreUpdated_UpdateScore;
     }
 
     private void OnScoreUpdated_UpdateScore(int score)

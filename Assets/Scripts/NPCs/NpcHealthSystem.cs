@@ -1,19 +1,17 @@
-using System;
 using UnityEngine;
 
 public class NpcHealthSystem : MonoBehaviour
 {
-    public static event Action<bool> OnNpcDie;
-    public static event Action OnNpcDamaged;
-
     [SerializeField] private StatsDataSO _data;
-    [SerializeField] private PlayerShoot _player;
+
+    private ScoreController _score;
 
     private NpcController _controller;
     private int _life;
 
     private void Awake()
     {
+        _score = MyPoolManager.Instance.gameObject.GetComponent<ScoreController>();
         _controller = GetComponent<NpcController>();
     }
 
@@ -24,7 +22,7 @@ public class NpcHealthSystem : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-        OnNpcDamaged?.Invoke();
+        //SfxManager.Instance.OnNpcDamaged_PlayClip();
         _life -= damage;
         if (_life <= 0)
         {
@@ -50,7 +48,7 @@ public class NpcHealthSystem : MonoBehaviour
         else
             Debug.Log("Killed a citizen");
 
-        OnNpcDie?.Invoke(_controller.isEnemy);
+        _score.OnNpcKilled_ChangeScore(_controller.isEnemy);
 
         gameObject.SetActive(false);
     }

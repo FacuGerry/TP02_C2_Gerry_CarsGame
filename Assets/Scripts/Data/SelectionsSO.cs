@@ -6,4 +6,11 @@ public class SelectionsSO : ScriptableObject
 {
     public CarSettingsSO car;
     public TrackSettingsSO track;
+
+    public GameObject spawnedCar;
+
+    public void ResetCar()
+    {
+        spawnedCar = null;
+    }
 }

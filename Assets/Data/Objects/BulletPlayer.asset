@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: BulletPlayer
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDataSO
   damage: 5
-  spawnCount: 15
-  prefab: {fileID: 6306378854264674115, guid: 07b9ef60e8c45de49908999ef91173e3, type: 3}
   travelDistance: 30
   travelHeight: 30
   travelDuration: 2
+  shootingDistance: 100000

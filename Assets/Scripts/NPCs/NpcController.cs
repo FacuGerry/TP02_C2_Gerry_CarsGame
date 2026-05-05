@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
+    [SerializeField] private SelectionsSO _selection;
     [SerializeField] private Animator _anim;
     [SerializeField] private StatsDataSO _data;
+    private GameObject _player;
 
     [Header("Bullets")]
     [SerializeField] private Transform _bulletShootPos;
-
-    [Header("Pausing game")]
-    [SerializeField] private PauseGame _pause;
-    private bool _isPaused = false;
 
     private List<EnemyStates> _states = new List<EnemyStates>();
     private EnemyStates currentState;
@@ -29,6 +26,8 @@ public class NpcController : MonoBehaviour
 
     private void Awake()
     {
+        _player = _selection.spawnedCar;
+
         _rb = GetComponent<Rigidbody>();
 
         _states.Add(new StateIdle());
@@ -154,10 +153,5 @@ public class NpcController : MonoBehaviour
                 return state;
 
         return null;
-    }
-
-    private void OnPause_PauseGame(bool isPaused)
-    {
-        _isPaused = isPaused;
     }
 }

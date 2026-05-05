@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee69076ec4dd82b49a4f40cc4fbd72b6, type: 3}
   m_Name: Selections
   m_EditorClassIdentifier: Assembly-CSharp::CarSelectedSO
-  car: {fileID: 0}
+  car: {fileID: 11400000, guid: 214417465cb17664fb1cd5dbf2813956, type: 2}
+  track: {fileID: 0}
+  spawnedCar: {fileID: 0}

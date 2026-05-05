@@ -6,7 +6,6 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private KeyBindingsSO _keys;
     [SerializeField] private Transform _shootingPos;
-    [SerializeField] private float _normalBulletDistance = 100f;
 
     [Header("Second bullet settings")]
     [SerializeField] private ObjectDataSO _data;
@@ -68,8 +67,8 @@ public class PlayerShoot : MonoBehaviour
     {
         while (_isShooting)
         {
-            SfxManager.Instance.OnPlayerShoot_PlayClip();
-            if (Physics.Raycast(_shootingPos.position, transform.forward, out RaycastHit ray, _normalBulletDistance))
+            //SfxManager.Instance.OnPlayerShoot_PlayClip();
+            if (Physics.Raycast(_shootingPos.position, _shootingPos.forward, out RaycastHit ray, _data.shootingDistance))
             {
                 if (ray.collider != null && ray.collider.TryGetComponent(out NpcHealthSystem npc))
                 {

@@ -10,4 +10,7 @@ public class ObjectDataSO : ScriptableObject
     public float travelDistance;
     public float travelHeight;
     public float travelDuration;
+
+    [Header("Player bullet")]
+    public float shootingDistance;
 }

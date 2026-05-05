@@ -5,12 +5,12 @@ public class CameraController : MonoBehaviour
     [Header("Keys")]
     [SerializeField] private KeyBindingsSO _keys;
 
-    [Header("Positions")]
-    [SerializeField] private Transform _firstPerson;
-    [SerializeField] private Transform _thirdPerson;
-
     [Header("Target")]
-    [SerializeField] private Transform _car;
+    [SerializeField] private SelectionsSO _car;
+
+    private Transform _firstPerson;            
+    private Transform _thirdPerson;            
+    private Transform _carTransform;
 
     private float _yaw;
     private float _pitch;
@@ -19,6 +19,10 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        _carTransform = _car.spawnedCar.transform;
+        _firstPerson = _car.spawnedCar.GetComponentInChildren<FirstPerson>().GetGameObject().transform;
+        _thirdPerson = _car.spawnedCar.GetComponentInChildren<ThirdPerson>().GetGameObject().transform;
+
         FollowCar();
     }
 
@@ -52,6 +56,6 @@ public class CameraController : MonoBehaviour
 
         _pitch += mouseY;
 
-        transform.rotation = Quaternion.Euler(_car.eulerAngles.x + _pitch, _car.eulerAngles.y + _yaw, 0f);
+        transform.rotation = Quaternion.Euler(_carTransform.eulerAngles.x + _pitch, _carTransform.eulerAngles.y + _yaw, 0f);
     }
 }
