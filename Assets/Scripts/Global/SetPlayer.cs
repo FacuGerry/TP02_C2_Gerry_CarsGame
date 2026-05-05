@@ -11,5 +11,7 @@ public class SetPlayer : MonoBehaviour
         GameObject car = Instantiate(_selection.car.prefab, transform.position, transform.rotation);
 
         _selection.spawnedCar = car;
+
+        PositionManager.Instance.SetNewValues(transform.position, transform.rotation.eulerAngles);
     }
 }
