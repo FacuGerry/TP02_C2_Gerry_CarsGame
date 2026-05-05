@@ -6,6 +6,7 @@ public class CarSettingsSO : ScriptableObject
 {
     [Header("Car GameObject")]
     public GameObject prefab;
+    public GameObject visual;
 
     [Header("Stats")]
     public float maxSpeed;

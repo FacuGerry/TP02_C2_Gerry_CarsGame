@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4cf7908cf4cd094c8e9fbacb123b351, type: 3}
   m_Name: Sedan_1
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettingsSO
+  prefab: {fileID: 2123198599053465789, guid: 8e5c05b9b40cadf4e9e6bbe7eeb5ed20, type: 3}
+  visual: {fileID: 2123198599053465789, guid: 10e75c2d5d9b17d488a7036ff8c787b1, type: 3}
   maxSpeed: 240
   weight: 1500
   horsePower: 750

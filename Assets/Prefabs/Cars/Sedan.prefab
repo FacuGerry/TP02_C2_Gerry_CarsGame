@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8346723245359612548
 Transform:
   m_ObjectHideFlags: 0
@@ -212,7 +212,6 @@ MonoBehaviour:
   _wheelVisualRR: {fileID: 3480189550626566066}
   _wheelVisualRL: {fileID: 3956097147876207519}
   _data: {fileID: 11400000, guid: 214417465cb17664fb1cd5dbf2813956, type: 2}
-  _posMng: {fileID: 0}
   _keys: {fileID: 11400000, guid: 662734b89445471478157f5e038cac01, type: 2}
 --- !u!114 &8658840226741154305
 MonoBehaviour:
@@ -227,7 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
   _data: {fileID: 11400000, guid: 214417465cb17664fb1cd5dbf2813956, type: 2}
-  _collisionController: {fileID: 1566459510049444563}
 --- !u!114 &6967444885195853839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,8 +272,6 @@ MonoBehaviour:
   _keys: {fileID: 11400000, guid: 662734b89445471478157f5e038cac01, type: 2}
   _shootingPos: {fileID: 7755548339875215437}
   _normalBulletDistance: 100
-  _pool: {fileID: 0}
-  _bulletsParent: {fileID: 0}
   _data: {fileID: 11400000, guid: d7b6a86f7db04e04e90e521b2ede82c1, type: 2}
   _cheatLine: {fileID: 994763138372467489}
 --- !u!114 &7196931979591722020
