@@ -9,7 +9,7 @@ public class PauseGame : MonoBehaviour
 
     [SerializeField] private KeyBindingsSO _keys;
     [SerializeField] private string _mainMenuScene = "MainMenu";
-    public bool isPaused { get; private set; }
+    public bool IsPaused { get; private set; }
 
     private void Awake()
     {
@@ -21,17 +21,20 @@ public class PauseGame : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Start()
     {
-        isPaused = false;
+        IsPaused = false;
         Time.timeScale = 1.0f;
     }
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().ToString() != _mainMenuScene &&
+        if (SceneManager.GetActiveScene().name != _mainMenuScene &&
            (Input.GetKeyDown(_keys.pause) || Input.GetKeyDown(_keys.pause2) || Input.GetKeyDown(_keys.pause3)))
             ChangePause();
     }
@@ -44,11 +47,8 @@ public class PauseGame : MonoBehaviour
 
     public void ChangePause()
     {
-        isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0.0f : 1.0f;
-        OnChangePause?.Invoke(isPaused);
-
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
+        IsPaused = !IsPaused;
+        Time.timeScale = IsPaused ? 0.0f : 1.0f;
+        OnChangePause?.Invoke(IsPaused);
     }
 }

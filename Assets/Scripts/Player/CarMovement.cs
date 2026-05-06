@@ -48,7 +48,7 @@ public class CarMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseGame.Instance.isPaused)
+        if (!PauseGame.Instance.IsPaused)
         {
             if (_canMove)
                 _accelerationForce = Input.GetAxis("Vertical") * _data.horsePower;

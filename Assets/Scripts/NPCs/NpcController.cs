@@ -50,7 +50,7 @@ public class NpcController : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseGame.Instance.isPaused)
+        if (!PauseGame.Instance.IsPaused)
         {
             currentState?.OnUpdate();
 

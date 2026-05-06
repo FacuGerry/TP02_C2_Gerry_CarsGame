@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDie : MonoBehaviour
 {
-   private HealthSystem _healthSystem;
+    private HealthSystem _healthSystem;
 
     private void Awake()
     {

@@ -25,7 +25,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseGame.Instance.isPaused)
+        if (!PauseGame.Instance.IsPaused)
         {
             if (Input.GetKey(_keys.shoot))
                 _isShooting = true;

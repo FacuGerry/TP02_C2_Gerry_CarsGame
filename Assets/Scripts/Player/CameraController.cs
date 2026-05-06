@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseGame.Instance.isPaused)
+        if (!PauseGame.Instance.IsPaused && _carTransform.gameObject.activeInHierarchy)
         {
             if (Input.GetKeyDown(_keys.changePOV))
                 _isFirstPerson = !_isFirstPerson;

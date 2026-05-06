@@ -6,14 +6,16 @@ public class UiPlayerDie : MonoBehaviour
 {
     [SerializeField] private Button _btnReplay;
     [SerializeField] private Button _btnMainMenu;
-    [SerializeField] private string _sceneReplay;
     [SerializeField] private string _sceneMainMenu;
-    [SerializeField] private HealthSystem _healthSystem;
+    [SerializeField] private SelectionsSO _selection;
+    private HealthSystem _healthSystem;
 
     private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
+        _healthSystem = _selection.spawnedCar.GetComponent<HealthSystem>();
+
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -52,7 +54,7 @@ public class UiPlayerDie : MonoBehaviour
 
     private void ReplayPressed()
     {
-        SceneManager.LoadScene(_sceneReplay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void MainMenuPressed()
