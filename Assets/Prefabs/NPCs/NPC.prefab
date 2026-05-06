@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7044992100728644889}
   - component: {fileID: 1206406652008470849}
+  - component: {fileID: 231196793549953721}
+  - component: {fileID: 8444128255905063849}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -48,7 +50,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -56,6 +58,36 @@ CapsuleCollider:
   m_Height: 1.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!114 &231196793549953721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641824828239679723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bd3f3045b360f499786b16491e74fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcController
+  _selection: {fileID: 11400000, guid: 248303f69be3a384cb4a3ac7effad4af, type: 2}
+  _anim: {fileID: 496568946074493090}
+  _data: {fileID: 11400000, guid: 0edf1dc6a0dd2cb4d943f56ce91f2377, type: 2}
+  _bulletShootPos: {fileID: 3783277566178228995}
+  isEnemy: 1
+--- !u!114 &8444128255905063849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641824828239679723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c84f481f2ee8f4a90b0659294aa412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcHealthSystem
+  _data: {fileID: 11400000, guid: 0edf1dc6a0dd2cb4d943f56ce91f2377, type: 2}
 --- !u!1 &4360140980506201310
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +246,11 @@ PrefabInstance:
       addedObject: {fileID: 3783277566178228995}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 037367994edc5904496ac5cc322bb0ca, type: 3}
+--- !u!95 &496568946074493090 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 037367994edc5904496ac5cc322bb0ca, type: 3}
+  m_PrefabInstance: {fileID: 6309190661627321651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5637121009110344443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 037367994edc5904496ac5cc322bb0ca, type: 3}

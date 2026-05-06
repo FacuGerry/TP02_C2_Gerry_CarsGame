@@ -23,13 +23,11 @@ public class UiButtonHoverSFXEvent : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        return;
         SfxManager.Instance.OnButtonHover_PlayClip();
     }
 
     public void ButtonClicked()
     {
-        return;
         SfxManager.Instance.OnButtonClick_PlayClip();
     }
 }

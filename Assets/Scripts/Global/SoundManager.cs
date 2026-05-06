@@ -34,19 +34,22 @@ public class SoundManager : MonoBehaviour
     public void OnMasterChanged(float vol)
     {
         _data.masterVol = vol;
-        _data.mixer.SetFloat("MasterVol", Mathf.Log10(vol) * 20);
+        float volume = Mathf.Log10(vol) * 20;
+        _data.mixer.SetFloat("MasterVol", volume);
     }
 
     public void OnMusicChanged(float vol)
     {
         _data.musicVol = vol;
-        _data.mixer.SetFloat("MusicVol", Mathf.Log10(vol) * 20);
+        float volume = Mathf.Log10(vol) * 20;
+        _data.mixer.SetFloat("MusicVol", volume);
     }
 
     public void OnSFXChanged(float vol)
     {
         _data.sfxVol = vol;
-        _data.mixer.SetFloat("SfxVol", Mathf.Log10(vol) * 20);
+        float volume = Mathf.Log10(vol) * 20;
+        _data.mixer.SetFloat("SfxVol", volume);
     }
 
 }

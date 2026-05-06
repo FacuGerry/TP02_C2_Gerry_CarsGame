@@ -67,7 +67,6 @@ public class PlayerShoot : MonoBehaviour
     {
         while (_isShooting)
         {
-            //SfxManager.Instance.OnPlayerShoot_PlayClip();
             if (Physics.Raycast(_shootingPos.position, _shootingPos.forward, out RaycastHit ray, _data.shootingDistance))
             {
                 if (ray.collider != null && ray.collider.TryGetComponent(out NpcHealthSystem npc))
@@ -77,6 +76,8 @@ public class PlayerShoot : MonoBehaviour
                 }
                 else
                     Debug.Log("you bad bro");
+
+                SfxManager.Instance.OnPlayerShoot_PlayClip();
             }
             yield return new WaitForSeconds(0.3f);
         }

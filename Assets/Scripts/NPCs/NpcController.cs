@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcController : MonoBehaviour
+public class NpcController : MonoBehaviour, IPooleable
 {
     [SerializeField] private SelectionsSO _selection;
     [SerializeField] private Animator _anim;
@@ -23,6 +23,8 @@ public class NpcController : MonoBehaviour
     private float _shootingSpeed;
 
     private IEnumerator _corroutineShoot;
+
+    public bool IsActive { get; set; }
 
     private void Awake()
     {
@@ -153,5 +155,15 @@ public class NpcController : MonoBehaviour
                 return state;
 
         return null;
+    }
+
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void DeActivate()
+    {
+        gameObject.SetActive(false);
     }
 }
