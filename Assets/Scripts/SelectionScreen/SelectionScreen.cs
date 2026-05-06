@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +22,8 @@ public class SelectionScreen : MonoBehaviour
 
     private List<GameObject> _trackVisuals = new List<GameObject>();
     private int _indexTracks = -1;
+
+    private GameModes _gameMode = GameModes.Endless;
 
     private void Start()
     {
@@ -51,6 +52,8 @@ public class SelectionScreen : MonoBehaviour
 
         _uiSelectionScreenButtons.OnTrackPressed += ChangeTrack;
 
+        _uiSelectionScreenButtons.OnGameModeChanged += ChangeGameMode;
+
         _uiSelectionScreenButtons.OnPlayPressed += SetSelections;
     }
 
@@ -64,6 +67,8 @@ public class SelectionScreen : MonoBehaviour
         _uiSelectionScreenButtons.OnVehiclePressed -= ChangeCar;
 
         _uiSelectionScreenButtons.OnTrackPressed -= ChangeTrack;
+
+        _uiSelectionScreenButtons.OnGameModeChanged -= ChangeGameMode;
 
         _uiSelectionScreenButtons.OnPlayPressed -= SetSelections;
     }
@@ -123,12 +128,20 @@ public class SelectionScreen : MonoBehaviour
         Debug.Log("track changed");
     }
 
+    // SET GAMEMODE
+
+    private void ChangeGameMode(GameModes mode)
+    {
+        _gameMode = mode;
+    }
+
     // SET SELECTIONS
 
     private void SetSelections()
     {
         _selection.car = _carsList[_indexCar];
         _selection.track = _tracksList[_indexTracks];
+        _selection.gameMode = _gameMode;
 
         SceneManager.LoadScene(_selection.track.sceneName);
     }

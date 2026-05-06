@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class UiSelectionScreenButtons : MonoBehaviour
 {
     public event Action<bool> OnVehiclePressed;         // If true: right pressed. If false: left pressed.
     public event Action<bool> OnTrackPressed;           // If true: right pressed. If false: left pressed.
+    public event Action<GameModes> OnGameModeChanged;   // Sends game mode
     public event Action OnPlayPressed;
 
     [Header("Vehicles")]
@@ -15,6 +17,9 @@ public class UiSelectionScreenButtons : MonoBehaviour
     [Header("Tracks")]
     [SerializeField] private Button _btnTrackLeft;
     [SerializeField] private Button _btnTrackRight;
+
+   [Header("Game mode")]
+   [SerializeField] private TMP_Dropdown _dropdownGameMode;
 
     [Header("Button play")]
     [SerializeField] private Button _btnPlay;
@@ -27,6 +32,8 @@ public class UiSelectionScreenButtons : MonoBehaviour
         _btnTrackLeft.onClick.AddListener(TrackLeftClicked);
         _btnTrackRight.onClick.AddListener(TrackRightClicked);
 
+        _dropdownGameMode.onValueChanged.AddListener(DropdownUsed);
+
         _btnPlay.onClick.AddListener(PlayClicked);
     }   
 
@@ -37,6 +44,8 @@ public class UiSelectionScreenButtons : MonoBehaviour
 
         _btnTrackLeft.onClick.RemoveAllListeners();
         _btnTrackRight.onClick.RemoveAllListeners();
+
+        _dropdownGameMode.onValueChanged.RemoveAllListeners();
 
         _btnPlay.onClick.RemoveAllListeners();
     }   
@@ -59,6 +68,11 @@ public class UiSelectionScreenButtons : MonoBehaviour
     private void TrackRightClicked()
     {
         OnTrackPressed?.Invoke(true);
+    }
+
+    private void DropdownUsed(int option)
+    {
+        OnGameModeChanged?.Invoke((GameModes)option);
     }
 
     private void PlayClicked()
