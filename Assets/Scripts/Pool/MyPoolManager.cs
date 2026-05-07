@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MyPoolManager : MonoBehaviour
 {
@@ -20,12 +21,16 @@ public class MyPoolManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         InitializePool();
+
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
     }
 
     private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;
+
+        SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
     }
 
     private void InitializePool()
@@ -81,5 +86,12 @@ public class MyPoolManager : MonoBehaviour
             return 0;
 
         return _pooleablesDictionary[type].Count;
+    }
+
+    private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+    {
+        foreach (KeyValuePair<Type, List<IPooleable>> item in _pooleablesDictionary)
+            foreach (IPooleable pooleable in item.Value)
+                pooleable.DeActivate();
     }
 }

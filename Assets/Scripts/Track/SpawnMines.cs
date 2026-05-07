@@ -30,7 +30,7 @@ public class SpawnMines : MonoBehaviour
             Vector3 randomOffset = new Vector3(Random.Range(-bounds.extents.x, bounds.extents.x), 0f, Random.Range(-bounds.extents.z, bounds.extents.z));
             Vector3 pos = bounds.center + randomOffset;
 
-            mine.transform.position = pos; // ESTO TIRA NULL POR ALGUN MOTIVO CUANDO TOCO REPLAY
+            mine.transform.position = pos;
             mine.Activate();
         }
     }

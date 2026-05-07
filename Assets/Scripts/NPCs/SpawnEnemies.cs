@@ -5,7 +5,7 @@ public class SpawnEnemies : MonoBehaviour
     [Header("Enemy spawners")]
     [SerializeField] private BoxCollider[] _spawnPlaces = new BoxCollider[0];
     [SerializeField] private SelectionsSO _selection;
-
+    
     private void Start() // NO ANDA, SPAWNEA 1 SOLO ENEMY ???
     {
         if (_selection.gameMode == GameModes.Competitive)
@@ -33,7 +33,7 @@ public class SpawnEnemies : MonoBehaviour
                 Vector3 randomOffset = new Vector3(Random.Range(-bounds.extents.x, bounds.extents.x), bounds.extents.y, Random.Range(-bounds.extents.z, bounds.extents.z));
                 Vector3 pos = bounds.center + randomOffset;
 
-                enemy.transform.position = pos; // ESTO TIRA NULL POR ALGUN MOTIVO CUANDO TOCO REPLAY
+                enemy.transform.position = pos;
                 enemy.Activate();
             }
         }
