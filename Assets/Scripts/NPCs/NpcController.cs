@@ -132,6 +132,9 @@ public class NpcController : MonoBehaviour, IPooleable
 
     private void CheckForPlayer()
     {
+        if (_player != _selection.spawnedCar)
+            _player = _selection.spawnedCar;
+
         if (Vector3.Distance(transform.position, _player.transform.position) <= _data.distanceToShoot)
             SwitchState(FindState(StateType.Shoot));
         else
@@ -160,10 +163,12 @@ public class NpcController : MonoBehaviour, IPooleable
     public void Activate()
     {
         gameObject.SetActive(true);
+        IsActive = true;
     }
 
     public void DeActivate()
     {
         gameObject.SetActive(false);
+        IsActive = false;
     }
 }
