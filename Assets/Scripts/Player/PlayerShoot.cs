@@ -69,12 +69,7 @@ public class PlayerShoot : MonoBehaviour
             if (Physics.Raycast(_shootingPos.position, _shootingPos.forward, out RaycastHit ray, _data.shootingDistance))
             {
                 if (ray.collider != null && ray.collider.TryGetComponent(out NpcHealthSystem npc))
-                {
                     npc.OnNormalShot_TakeDamage(_data.damage);
-                    Debug.Log("Hit an NPC");
-                }
-                else
-                    Debug.Log("you bad bro");
 
                 SfxManager.Instance.OnPlayerShoot_PlayClip();
             }

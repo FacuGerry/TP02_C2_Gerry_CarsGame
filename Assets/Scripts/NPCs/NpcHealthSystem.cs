@@ -22,7 +22,7 @@ public class NpcHealthSystem : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-        //SfxManager.Instance.OnNpcDamaged_PlayClip();
+        SfxManager.Instance.OnNpcDamaged_PlayClip();
         _life -= damage;
         if (_life <= 0)
         {
@@ -50,6 +50,6 @@ public class NpcHealthSystem : MonoBehaviour
 
         _score.OnNpcKilled_ChangeScore(_controller.isEnemy);
 
-        gameObject.SetActive(false);
+        _controller.EnemyDie();
     }
 }

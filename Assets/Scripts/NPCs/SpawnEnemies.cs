@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
@@ -5,7 +6,9 @@ public class SpawnEnemies : MonoBehaviour
     [Header("Enemy spawners")]
     [SerializeField] private BoxCollider[] _spawnPlaces = new BoxCollider[0];
     [SerializeField] private SelectionsSO _selection;
-    
+
+    private List<NpcController> _enemiesList = new List<NpcController>();
+
     private void Start()
     {
         if (_selection.gameMode == GameModes.Competitive)
@@ -33,9 +36,23 @@ public class SpawnEnemies : MonoBehaviour
                 Vector3 randomOffset = new Vector3(Random.Range(-bounds.extents.x, bounds.extents.x), bounds.extents.y, Random.Range(-bounds.extents.z, bounds.extents.z));
                 Vector3 pos = bounds.center + randomOffset;
 
+                float randEnemy = Random.value;
+                if (randEnemy < 0.5f)
+                {
+                    enemy.isEnemy = true;
+                    _enemiesList.Add(enemy);
+                }
+                else
+                    enemy.isEnemy = false;
+
                 enemy.Activate();
                 enemy.transform.SetPositionAndRotation(pos, coll.gameObject.transform.rotation);
             }
         }
+    }
+
+    public List<NpcController> GetEnemiesList()
+    {
+        return _enemiesList;
     }
 }

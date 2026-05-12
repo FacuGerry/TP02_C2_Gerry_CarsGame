@@ -25,6 +25,7 @@ public class NpcController : MonoBehaviour, IPooleable
     private IEnumerator _corroutineShoot;
 
     public bool IsActive { get; set; }
+    public bool IsAlive { get; set; }
 
     private void Awake()
     {
@@ -164,11 +165,19 @@ public class NpcController : MonoBehaviour, IPooleable
     {
         gameObject.SetActive(true);
         IsActive = true;
+        IsAlive = true;
     }
 
     public void DeActivate()
     {
         gameObject.SetActive(false);
         IsActive = false;
+        IsAlive = false;
+    }
+
+    public void EnemyDie()
+    {
+        DeActivate();
+        WinController.Instance.CheckWin();
     }
 }

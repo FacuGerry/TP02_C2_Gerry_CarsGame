@@ -78,6 +78,18 @@ public class MyPoolManager : MonoBehaviour
         return null;
     }
 
+    public List<T> GetPool<T>() where T : MonoBehaviour, IPooleable
+    {
+        Type type = typeof(T);
+
+        if (!_pooleablesDictionary.ContainsKey(type))
+            return null;
+
+        List<IPooleable> list = _pooleablesDictionary[type];
+
+        return list as List<T>;
+    }
+
     public int GetPoolSize<T>() where T : MonoBehaviour, IPooleable
     {
         Type type = typeof(T);
