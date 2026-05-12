@@ -11,13 +11,31 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        _sliderMaster.value = _data.masterVol;
-        _sliderMusic.value = _data.musicVol;
-        _sliderSFX.value = _data.sfxVol;
+        if (!PlayerPrefs.HasKey("MasterVol"))
+        {
+            PlayerPrefs.SetFloat("MasterVol", 1f);
+            PlayerPrefs.Save();
+        }
 
-        OnMasterChanged(_data.masterVol);
-        OnMusicChanged(_data.musicVol);
-        OnSFXChanged(_data.sfxVol);
+        if (!PlayerPrefs.HasKey("MusicVol"))
+        {
+            PlayerPrefs.SetFloat("MusicVol", 1f);
+            PlayerPrefs.Save();
+        }
+
+        if (!PlayerPrefs.HasKey("SfxVol"))
+        {
+            PlayerPrefs.SetFloat("SfxVol", 1f);
+            PlayerPrefs.Save();
+        }
+
+        _sliderMaster.value = PlayerPrefs.GetFloat("MasterVol");
+        _sliderMusic.value = PlayerPrefs.GetFloat("MusicVol");
+        _sliderSFX.value = PlayerPrefs.GetFloat("SfxVol");
+
+        OnMasterChanged(PlayerPrefs.GetFloat("MasterVol"));
+        OnMusicChanged(PlayerPrefs.GetFloat("MusicVol"));
+        OnSFXChanged(PlayerPrefs.GetFloat("SfxVol"));
 
         _sliderMaster.onValueChanged.AddListener(OnMasterChanged);
         _sliderMusic.onValueChanged.AddListener(OnMusicChanged);
@@ -31,25 +49,30 @@ public class SoundManager : MonoBehaviour
         _sliderSFX.onValueChanged.RemoveAllListeners();
     }
 
-    public void OnMasterChanged(float vol)
+    private void OnMasterChanged(float vol)
     {
-        _data.masterVol = vol;
         float volume = Mathf.Log10(vol) * 20;
         _data.mixer.SetFloat("MasterVol", volume);
+
+        PlayerPrefs.SetFloat("MasterVol", vol);
+        PlayerPrefs.Save();
     }
 
-    public void OnMusicChanged(float vol)
+    private void OnMusicChanged(float vol)
     {
-        _data.musicVol = vol;
         float volume = Mathf.Log10(vol) * 20;
         _data.mixer.SetFloat("MusicVol", volume);
+
+        PlayerPrefs.SetFloat("MusicVol", vol);
+        PlayerPrefs.Save();
     }
 
-    public void OnSFXChanged(float vol)
+    private void OnSFXChanged(float vol)
     {
-        _data.sfxVol = vol;
         float volume = Mathf.Log10(vol) * 20;
         _data.mixer.SetFloat("SfxVol", volume);
-    }
 
+        PlayerPrefs.SetFloat("SfxVol", vol);
+        PlayerPrefs.Save();
+    }
 }

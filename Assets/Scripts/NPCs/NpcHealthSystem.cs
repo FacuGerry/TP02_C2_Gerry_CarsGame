@@ -28,6 +28,7 @@ public class NpcHealthSystem : MonoBehaviour
         {
             _life = 0;
             NpcDie();
+            SfxManager.Instance.OnNpcDie_PlayClip();
         }
     }
 

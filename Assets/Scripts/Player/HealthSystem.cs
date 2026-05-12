@@ -59,11 +59,13 @@ public class HealthSystem : MonoBehaviour
 
     private void GetDamaged(int damage)
     {
+        SfxManager.Instance.OnPlayerDamaged_PlayClip();
         _durability -= damage;
         if (_durability < 0)
         {
             _durability = 0;
             OnPlayerDie?.Invoke();
+            SfxManager.Instance.OnPlayerDie_PlayClip();
         }
         Debug.Log("car has " + _durability + " left");
         OnPlayerDamaged?.Invoke();

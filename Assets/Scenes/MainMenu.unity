@@ -1317,6 +1317,10 @@ PrefabInstance:
       value: CanvasCredits
       objectReference: {fileID: 0}
     - target: {fileID: 5181838951932834576, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181838951932834576, guid: 179d3951c2ceba143b836fcf0a5ea066, type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
       objectReference: {fileID: 0}
@@ -1603,6 +1607,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _enemyDie
+      value: 
+      objectReference: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _playerDie
+      value: 
+      objectReference: {fileID: 8300000, guid: bb2e2714f962491428dcb0b38598b251, type: 3}
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _enemyShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 312acfbde9e6cf84089713b2e28e3c95, type: 3}
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _enemyDamaged
+      value: 
+      objectReference: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _playerDamaged
+      value: 
+      objectReference: {fileID: 8300000, guid: e11a5a019377fbd4c81caa0adcb4c236, type: 3}
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _playerShootClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fe2340c73ebdceb4e943735173003904, type: 3}
+    - target: {fileID: 6576835745494326422, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: _playerSecondShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a95096b3272ad146b77fd983ea20f58, type: 3}
+    - target: {fileID: 6592438608490753217, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592438608490753217, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 5b1ed8fbe89154eaf96723b6e5f0aad3, type: 3}
+    - target: {fileID: 6592438608490753217, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7900058257434145282, guid: 8dae05045fda71d4f9b666925ea60a8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2541,7 +2585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2993693109447055380, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 375
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 2993693109447055380, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_LocalScale.x
@@ -2634,11 +2678,19 @@ PrefabInstance:
         fonts -> fuel & life icons
 
 
-        Hope you had fun ;)'
+        Casual & Relaxing Game Music -> Bckg
+        music
+
+
+        Free Sound Effects Pack -> sfx
+
+
+        Hope you had fun
+        ;)'
       objectReference: {fileID: 0}
     - target: {fileID: 5085263755502386255, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5085263755502386255, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_fontColor.b
@@ -2654,7 +2706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085263755502386255, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_fontSizeBase
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5085263755502386255, guid: e108550aa09b84f4394550b9fc6eb6a1, type: 3}
       propertyPath: m_overflowMode
@@ -2839,6 +2891,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3508635308375028576, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508635308375028576, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3941410839375603892, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2878,6 +2938,14 @@ PrefabInstance:
     - target: {fileID: 5821011183632156271, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356594889417311846, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356594889417311846, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6788244190309719474, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2987,6 +3055,14 @@ PrefabInstance:
       propertyPath: _sliderMaster
       value: 
       objectReference: {fileID: 1185768831}
+    - target: {fileID: 9154313899063181550, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154313899063181550, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5041732331756052467, guid: fb2cca76e527dab4bac4a04a3319e6b9, type: 3}
     m_RemovedGameObjects:

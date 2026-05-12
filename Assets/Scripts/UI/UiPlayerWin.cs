@@ -8,11 +8,26 @@ public class UiPlayerWin : MonoBehaviour
     [SerializeField] private string _sceneToLoad = "MainMenu";
     private CanvasGroup _canvas;
 
+    private void Awake()
+    {
+        _canvas = GetComponent<CanvasGroup>();
+    }
+
     private void Start()
     {
         ChangeCanvas(false);
 
         _btn.onClick.AddListener(GoToMainMenu);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
     }
 
     private void OnDestroy()
@@ -22,6 +37,7 @@ public class UiPlayerWin : MonoBehaviour
 
     private void GoToMainMenu()
     {
+        PauseGame.Instance.SetTime(false);
         SceneManager.LoadScene(_sceneToLoad);
     }
 
@@ -32,8 +48,13 @@ public class UiPlayerWin : MonoBehaviour
 
     private void ChangeCanvas(bool isOn)
     {
-        _canvas.alpha = isOn ? 1 : 0;
+        _canvas.alpha = isOn ? 1f : 0f;
         _canvas.interactable = isOn;
         _canvas.blocksRaycasts = isOn;
+    }
+
+    private void SceneManager_activeSceneChanged(Scene scene, Scene scene2)
+    {
+        ChangeCanvas(false);
     }
 }

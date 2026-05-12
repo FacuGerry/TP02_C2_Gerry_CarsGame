@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -99,7 +100,12 @@ public class UiMainMenu : MonoBehaviour
 
     private void OnExitPressed()
     {
+        Debug.Log("bye");
         Application.Quit();
+
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
     }
 
     private void OnBackSettingsPressed()

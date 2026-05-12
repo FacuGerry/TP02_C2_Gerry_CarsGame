@@ -44,7 +44,7 @@ public class WinController : MonoBehaviour
 
     private void Win()
     {
-        PauseGame.Instance.ChangePause();
+        PauseGame.Instance.SetTime(true);
         _uiWin.OnWin_SetCanvas();
     }
 }

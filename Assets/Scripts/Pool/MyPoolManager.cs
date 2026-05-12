@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -87,7 +88,7 @@ public class MyPoolManager : MonoBehaviour
 
         List<IPooleable> list = _pooleablesDictionary[type];
 
-        return list as List<T>;
+        return list.Cast<T>().ToList();
     }
 
     public int GetPoolSize<T>() where T : MonoBehaviour, IPooleable

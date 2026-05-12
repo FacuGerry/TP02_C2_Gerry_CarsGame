@@ -51,4 +51,10 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = IsPaused ? 0.0f : 1.0f;
         OnChangePause?.Invoke(IsPaused);
     }
+
+    public void SetTime(bool isZero)
+    {
+        IsPaused = isZero;
+        Time.timeScale = IsPaused ? 0.0f : 1.0f;
+    }
 }

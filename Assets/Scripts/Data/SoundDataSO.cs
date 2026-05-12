@@ -6,7 +6,4 @@ using UnityEngine.Audio;
 public class SoundDataSO : ScriptableObject
 {
     public AudioMixer mixer;
-    public float masterVol;
-    public float musicVol;
-    public float sfxVol;
 }

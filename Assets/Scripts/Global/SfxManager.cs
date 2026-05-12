@@ -71,7 +71,7 @@ public class SfxManager : MonoBehaviour
         _sfx.PlayOneShot(_enemyDamaged);
     }
 
-    public void OnNpcDie_PlayClip(bool isEnemy)
+    public void OnNpcDie_PlayClip()
     {
         _sfx.PlayOneShot(_enemyDie);
     }

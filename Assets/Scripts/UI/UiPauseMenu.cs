@@ -43,13 +43,13 @@ public class UiPauseMenu : MonoBehaviour
 
     private void BackClicked()
     {
-        if (PauseGame.Instance != null)
-            PauseGame.Instance.ChangePause();
+        PauseGame.Instance.ChangePause();
     }
 
     private void MainMenuClicked()
     {
         SceneManager.LoadScene(_sceneToLoad);
+        PauseGame.Instance.ChangePause();
     }
 
     private void OnPause_ShowSettings(bool isPause)
